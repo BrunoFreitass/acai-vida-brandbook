@@ -255,7 +255,7 @@ st.divider()
 # APLICAÇÃO DA MARCA
 # ==================================================
 
-imagem_copo = Path("editaveis/acai.02.png")
+imagem_copo = Path("editaveis/açai.01.png")
 imagem_taca = Path("editaveis/açai.02.png")
 
 titulo("04", "Aplicação da Marca")
