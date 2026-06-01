@@ -14,278 +14,290 @@ st.set_page_config(
     page_title="Açaí Vida | Brandbook",
     page_icon="editaveis/logo.png",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ==================================================
-# CSS (ESTILO SITE / BEHANCE)
+# 🎨 CSS COM ANIMAÇÕES SUAVES
 # ==================================================
 
 st.markdown("""
 <style>
 
-html {
-    scroll-behavior: smooth;
+/* fade-in geral */
+body {
+    animation: fadeIn 1s ease-in-out;
 }
 
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* títulos */
 .title {
     font-size: 54px;
     font-weight: 900;
     color: #4B1E2F;
+    animation: slideUp 0.8s ease-in-out;
 }
 
 .subtitle {
     color: #777;
+    animation: fadeIn 1.2s ease-in-out;
 }
 
-.section {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #eee;
+/* entrada de seções */
+section, div.block-container {
+    animation: fadeIn 1s ease-in-out;
 }
 
-.card {
-    padding: 20px;
-    border-radius: 14px;
-    border: 1px solid #eee;
+/* cards de cores */
+div[style*="background"] {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.color-card {
-    padding: 25px;
-    border-radius: 12px;
-    color: white;
-    text-align: center;
-    font-weight: bold;
+div[style*="background"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* imagens hover */
+img {
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+/* slide up */
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# MENU LATERAL (SCROLL NAVIGATION)
+# CAPA (LOGO + NOME ESQUERDA)
 # ==================================================
 
-st.sidebar.title("📌 Brandbook")
+logo = Path("editaveis/logo.png")
 
-menu = st.sidebar.radio(
-    "Navegação",
-    [
-        "Capa",
-        "Identidade",
-        "Tipografia",
-        "Cores",
-        "Aplicação",
-        "Mockups",
-        "Exportação"
-    ]
-)
+col1, col2 = st.columns([1,5])
 
-# ==================================================
-# CAPA
-# ==================================================
+with col1:
+    if logo.exists():
+        st.image(str(logo), width=120)
 
-if menu == "Capa":
+with col2:
+    st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
+    st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
 
-    logo = Path("editaveis/logo.png")
-
-    col1, col2 = st.columns([1,5])
-
-    with col1:
-        if logo.exists():
-            st.image(str(logo), width=120)
-
-    with col2:
-        st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
-        st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
-
-    st.write("Scroll para navegar pelo brandbook.")
+st.divider()
 
 # ==================================================
 # IDENTIDADE VISUAL
 # ==================================================
 
-if menu == "Identidade":
+st.header("01 • Identidade Visual")
 
-    st.markdown("<div class='section'>", unsafe_allow_html=True)
+col1, col2 = st.columns(2)
 
-    st.header("Identidade Visual")
+with col1:
+    st.subheader("Logo Principal")
+    st.image("editaveis/logo.png", width=250)
 
-    col1, col2 = st.columns(2)
+with col2:
+    st.subheader("Logos diversas")
+    st.image("editaveis/logos.png", width=500)
 
-    with col1:
-        st.subheader("Logo Principal")
-        st.image("editaveis/logo.png", width=250)
+st.divider()
 
-    with col2:
-        st.subheader("Logos diversas")
-        st.image("editaveis/logos.png", width=500)
+# ==================================================
+# CONCEITO
+# ==================================================
+
+st.header("02 • Conceito da Marca")
+
+st.write("""
+A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
+""")
+
+st.divider()
 
 # ==================================================
 # TIPOGRAFIA
 # ==================================================
 
-if menu == "Tipografia":
+st.header("03 • Tipografia")
 
-    st.markdown("<div class='section'>", unsafe_allow_html=True)
+col1, col2, col3 = st.columns(3)
 
-    st.header("Tipografia da Marca")
+with col1:
+    st.subheader("Gelato Luxe")
+    st.image("editaveis/gelato.png")
+    st.caption("Fonte principal da marca")
 
-    col1, col2, col3 = st.columns(3)
+with col2:
+    st.subheader("Poppins Bold")
+    st.image("editaveis/poppins.png")
+    st.caption("Fonte secundária")
 
-    with col1:
-        st.subheader("Gelato Luxe")
-        st.image("editaveis/gelato.png")
-        st.caption("Fonte principal")
+with col3:
+    st.subheader("Montserrat Regular")
+    st.image("editaveis/montserrat.png")
+    st.caption("Fonte de apoio")
 
-    with col2:
-        st.subheader("Poppins Bold")
-        st.image("editaveis/poppins.png")
-        st.caption("Fonte secundária")
-
-    with col3:
-        st.subheader("Montserrat")
-        st.image("editaveis/montserrat.png")
-        st.caption("Fonte de apoio")
+st.divider()
 
 # ==================================================
-# CORES
+# PALETA DE CORES (LOGO AO LADO)
 # ==================================================
 
-if menu == "Cores":
+st.header("04 • Paleta de Cores")
 
-    st.markdown("<div class='section'>", unsafe_allow_html=True)
+col_logo, col_cores = st.columns([1,3])
 
-    st.header("Paleta de Cores")
+with col_logo:
+    st.image("editaveis/logo.png", width=120)
 
-    col_logo, col_cores = st.columns([1,3])
+with col_cores:
 
-    with col_logo:
-        st.image("editaveis/logo.png", width=120)
+    cores = [
+        ("Roxo Açaí", "#5B2A8C"),
+        ("Verde Energia", "#D2D914"),
+        ("Amarelo Tropical", "#F2CB05"),
+        ("Branco Neve", "#FDFBFE"),
+        ("Roxo Profundo", "#2D0B48"),
+    ]
 
-    with col_cores:
+    cols = st.columns(3)
 
-        cores = [
-            ("Roxo Açaí", "#5B2A8C"),
-            ("Verde Energia", "#D2D914"),
-            ("Amarelo Tropical", "#F2CB05"),
-            ("Branco Neve", "#FDFBFE"),
-            ("Roxo Profundo", "#2D0B48"),
-        ]
+    for i, (nome, cor) in enumerate(cores):
 
-        cols = st.columns(3)
+        with cols[i % 3]:
 
-        for i, (nome, cor) in enumerate(cores):
+            st.markdown(f"""
+            <div style="
+                background:{cor};
+                padding:22px;
+                border-radius:12px;
+                text-align:center;
+                font-weight:bold;
+                color:white;
+            ">
+            {nome}<br>{cor}
+            </div>
+            """, unsafe_allow_html=True)
 
-            with cols[i % 3]:
-
-                st.markdown(f"""
-                <div style="
-                    background:{cor};
-                    padding:22px;
-                    border-radius:12px;
-                    text-align:center;
-                    font-weight:bold;
-                    color:white;
-                ">
-                {nome}<br>{cor}
-                </div>
-                """, unsafe_allow_html=True)
+st.divider()
 
 # ==================================================
 # APLICAÇÃO
 # ==================================================
 
-if menu == "Aplicação":
+st.header("05 • Aplicação da Marca")
 
-    st.header("Aplicação da Marca")
+col1, col2 = st.columns(2)
 
-    col1, col2 = st.columns(2)
+with col1:
+    st.subheader("🥤 Copo Comercial")
+    st.image("editaveis/açai.01.png")
 
-    with col1:
-        st.image("editaveis/acai.01.png")
+with col2:
+    st.subheader("🍨 Taça Premium")
+    st.image("editaveis/açai.02.png")
 
-    with col2:
-        st.image("editaveis/acai.02.png")
+st.divider()
 
 # ==================================================
 # MOCKUPS
 # ==================================================
 
-if menu == "Mockups":
+st.header("06 • Mockups")
 
-    st.header("Mockups")
+col1, col2, col3 = st.columns(3)
 
-    col1, col2, col3 = st.columns(3)
+with col1:
+    st.image("editaveis/acai.03.png", caption="Copo")
 
-    with col1:
-        st.image("editaveis/acai.03.png", caption="Copo")
+with col2:
+    st.image("editaveis/uniforme.png", caption="Uniforme")
 
-    with col2:
-        st.image("editaveis/uniforme.png", caption="Uniforme")
+with col3:
+    st.image("editaveis/insta.jpg", caption="Instagram")
 
-    with col3:
-        st.image("editaveis/insta.jpg", caption="Instagram")
+st.divider()
 
 # ==================================================
 # EXPORTAÇÃO
 # ==================================================
 
-if menu == "Exportação":
+st.header("07 • Exportação")
 
-    st.header("Exportar Material")
+def gerar_pdf():
 
-    def gerar_pdf():
+    buffer = io.BytesIO()
+    pdf = canvas.Canvas(buffer, pagesize=letter)
 
-        buffer = io.BytesIO()
-        pdf = canvas.Canvas(buffer, pagesize=letter)
+    pdf.setFont("Helvetica-Bold", 26)
+    pdf.drawString(180, 750, "AÇAÍ VIDA")
 
-        pdf.setFont("Helvetica-Bold", 26)
-        pdf.drawString(180, 750, "AÇAÍ VIDA")
+    pdf.setFont("Helvetica", 14)
+    pdf.drawString(160, 730, "Brandbook Acadêmico")
 
-        pdf.setFont("Helvetica", 14)
-        pdf.drawString(160, 730, "Brandbook Acadêmico")
+    if Path("editaveis/logo.png").exists():
+        pdf.drawImage("editaveis/logo.png", 240, 520, width=120, height=120)
 
-        if Path("editaveis/logo.png").exists():
-            pdf.drawImage("editaveis/logo.png", 240, 520, width=120, height=120)
+    pdf.showPage()
+    pdf.save()
 
-        pdf.showPage()
-        pdf.save()
+    buffer.seek(0)
+    return buffer
 
-        buffer.seek(0)
-        return buffer
+def gerar_zip():
 
-    def gerar_zip():
+    buffer = io.BytesIO()
 
-        buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w") as z:
 
-        with zipfile.ZipFile(buffer, "w") as z:
+        arquivos = [
+            "editaveis/logo.png",
+            "editaveis/logos.png",
+            "editaveis/acai.01.png",
+            "editaveis/acai.02.png",
+            "editaveis/acai.03.png",
+            "editaveis/uniforme.png",
+            "editaveis/insta.jpg",
+            "editaveis/gelato.png",
+            "editaveis/poppins.png",
+            "editaveis/montserrat.png",
+        ]
 
-            arquivos = [
-                "editaveis/logo.png",
-                "editaveis/logos.png",
-                "editaveis/acai.01.png",
-                "editaveis/acai.02.png",
-                "editaveis/acai.03.png",
-                "editaveis/uniforme.png",
-                "editaveis/insta.jpg",
-                "editaveis/gelato.png",
-                "editaveis/poppins.png",
-                "editaveis/montserrat.png",
-            ]
+        for f in arquivos:
+            if Path(f).exists():
+                z.write(f)
 
-            for f in arquivos:
-                if Path(f).exists():
-                    z.write(f)
+    buffer.seek(0)
+    return buffer
 
-        buffer.seek(0)
-        return buffer
+st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application/pdf")
 
-    st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application/pdf")
+st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip")
 
-    st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip")
+st.divider()
 
 # ==================================================
 # RODAPÉ
 # ==================================================
 
-st.sidebar.caption("Açaí Vida • Brandbook 2026")
+st.caption("Açaí Vida • Brandbook Acadêmico • 2026")
