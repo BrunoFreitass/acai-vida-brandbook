@@ -1,5 +1,4 @@
-# visual.py
-
+#python
 import streamlit as st
 from pathlib import Path
 
@@ -9,7 +8,7 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="Açaí Vida | Brandbook",
-    page_icon=r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\mirtilo.png",
+    page_icon="🍧",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -19,7 +18,6 @@ st.set_page_config(
 # ==================================================
 
 def titulo(numero, texto):
-
     st.markdown(f"### {numero}")
     st.header(texto)
 
@@ -27,18 +25,13 @@ def titulo(numero, texto):
 # LOGO
 # ==================================================
 
-logo = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\mirtilo.png")
+logo = Path("mirtilo.png")
 
 col1, col2, col3 = st.columns([2,1,2])
 
 with col2:
-
     if logo.exists():
-
-        st.image(
-            str(logo),
-            width=180
-        )
+        st.image(str(logo), width=180)
 
 # ==================================================
 # CAPA
@@ -62,6 +55,13 @@ st.markdown(
 st.caption(
     "Instituto Federal de Roraima • Projeto Acadêmico • 2026"
 )
+
+st.markdown("""
+### Brandbook Acadêmico
+
+Desenvolvimento da identidade visual da marca Açaí Vida,
+incluindo conceito, tipografia, paleta cromática e aplicações visuais.
+""")
 
 st.divider()
 
@@ -88,16 +88,14 @@ st.divider()
 
 titulo("01", "Conceito da Marca")
 
-st.write(
-    """
+st.write("""
 A Açaí Vida foi criada para proporcionar uma experiência
 gastronômica marcante, unindo a energia do açaí à refrescância
 dos sorvetes.
 
 Sua identidade visual foi construída para transmitir vitalidade,
 alegria, acolhimento e conexão com a cultura amazônica.
-"""
-)
+""")
 
 st.divider()
 
@@ -150,23 +148,11 @@ de tipografias que reforçam a personalidade da marca,
 equilibrando criatividade, legibilidade e modernidade.
 """)
 
-# Caminhos das imagens
+tipografia_logo = Path("gelato.png")
+tipografia_poppins = Path("poppins.png")
+tipografia_montserrat = Path("montserrat.png")
 
-tipografia_logo = Path(
-    r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\gelato.png"
-)
-
-tipografia_poppins = Path(
-    r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\poppins.png"
-)
-
-tipografia_montserrat = Path(
-    r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\montserrat.png"
-)
-
-# ----------------------------------
-# GELATO LUXE
-# ----------------------------------
+# GELATO
 
 st.subheader("Fonte Principal — Gelato Luxe")
 
@@ -175,17 +161,10 @@ col1, col2 = st.columns([2,1])
 with col1:
 
     if tipografia_logo.exists():
-
-        st.image(
-            str(tipografia_logo),
-            width="stretch"
-        )
+        st.image(str(tipografia_logo))
 
     else:
-
-        st.warning(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\gelato.png"
-        )
+        st.warning("Imagem não encontrada: gelato.png")
 
 with col2:
 
@@ -206,9 +185,7 @@ with col2:
 
 st.divider()
 
-# ----------------------------------
 # POPPINS
-# ----------------------------------
 
 st.subheader("Fonte Secundária — Poppins Bold")
 
@@ -217,17 +194,10 @@ col1, col2 = st.columns([2,1])
 with col1:
 
     if tipografia_poppins.exists():
-
-        st.image(
-            str(tipografia_poppins),
-            width="stretch"
-        )
+        st.image(str(tipografia_poppins))
 
     else:
-
-        st.warning(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\poppins.png"
-        )
+        st.warning("Imagem não encontrada: poppins.png")
 
 with col2:
 
@@ -248,9 +218,7 @@ with col2:
 
 st.divider()
 
-# ----------------------------------
 # MONTSERRAT
-# ----------------------------------
 
 st.subheader("Fonte de Apoio — Montserrat Regular")
 
@@ -259,17 +227,10 @@ col1, col2 = st.columns([2,1])
 with col1:
 
     if tipografia_montserrat.exists():
-
-        st.image(
-            str(tipografia_montserrat),
-            width="stretch"
-        )
+        st.image(str(tipografia_montserrat))
 
     else:
-
-        st.warning(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\Montserrat.png"
-        )
+        st.warning("Imagem não encontrada: montserrat.png")
 
 with col2:
 
@@ -291,15 +252,11 @@ with col2:
 st.divider()
 
 # ==================================================
-# IMAGENS
-# ==================================================
-
-imagem_copo = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\açai.02.png")
-imagem_taca = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\açai.01.png")
-
-# ==================================================
 # APLICAÇÃO DA MARCA
 # ==================================================
+
+imagem_copo = Path("acai.02.png")
+imagem_taca = Path("acai.01.png")
 
 titulo("04", "Aplicação da Marca")
 
@@ -310,30 +267,20 @@ with col1:
     st.subheader("🥤 Copo Comercial")
 
     if imagem_copo.exists():
-
-        st.image(
-            str(imagem_copo),
-            width="stretch"
-        )
+        st.image(str(imagem_copo))
 
     else:
-
-        st.warning(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\acai.01.png")
+        st.warning("Imagem não encontrada: acai.02.png")
 
 with col2:
 
     st.subheader("🍨 Taça Premium")
 
     if imagem_taca.exists():
-
-        st.image(
-            str(imagem_taca),
-            width="stretch"
-        )
+        st.image(str(imagem_taca))
 
     else:
-
-        st.warning(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\açai.01.png")
+        st.warning("Imagem não encontrada: acai.01.png")
 
 st.divider()
 
@@ -353,54 +300,33 @@ aba1, aba2, aba3 = st.tabs(
 
 with aba1:
 
-    mockup_copo = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\acai.03.png")
+    mockup_copo = Path("acai.03.png")
 
     if mockup_copo.exists():
-
-        st.image(
-            str(mockup_copo),
-            width="stretch"
-        )
+        st.image(str(mockup_copo))
 
     else:
-
-        st.info(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\acai.03.png"
-        )
+        st.info("Imagem não encontrada: acai.03.png")
 
 with aba2:
 
-    uniforme = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\uniforme.png")
+    uniforme = Path("uniforme.png")
 
     if uniforme.exists():
-
-        st.image(
-            str(uniforme),
-            width="stretch"
-        )
+        st.image(str(uniforme))
 
     else:
-
-        st.info(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\uniforme.png"
-        )
+        st.info("Imagem não encontrada: uniforme.png")
 
 with aba3:
 
-    instagram = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\insta.jpg")
+    instagram = Path("insta.jpg")
 
     if instagram.exists():
-
-        st.image(
-            str(instagram),
-            width="stretch"
-        )
+        st.image(str(instagram))
 
     else:
-
-        st.info(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\insta.jpg"
-        )
+        st.info("Imagem não encontrada: insta.jpg")
 
 st.divider()
 
@@ -410,21 +336,19 @@ st.divider()
 
 titulo("06", "Significado das Cores")
 
-st.markdown(
-"""
-🟣 **Roxo Açaí**  
+st.markdown("""
+🟣 **Roxo Açaí**
 Representa o produto principal da marca.
 
-🟢 **Verde Energia**  
+🟢 **Verde Energia**
 Representa vitalidade, natureza e origem amazônica.
 
-🟡 **Amarelo Tropical**  
+🟡 **Amarelo Tropical**
 Representa alegria, calor e energia.
 
-⚪ **Branco Neve**  
+⚪ **Branco Neve**
 Representa leveza e limpeza visual.
-"""
-)
+""")
 
 st.divider()
 
@@ -434,8 +358,7 @@ st.divider()
 
 titulo("07", "Resultado Final")
 
-st.success(
-    """
+st.success("""
 A identidade visual desenvolvida para a Açaí Vida
 busca transmitir energia, sabor, acolhimento e
 conexão com a cultura amazônica.
@@ -443,8 +366,7 @@ conexão com a cultura amazônica.
 O sistema visual foi aplicado em embalagens,
 mockups e peças digitais, criando uma marca
 coerente e memorável.
-"""
-)
+""")
 
 st.divider()
 
@@ -452,12 +374,10 @@ st.divider()
 # RODAPÉ
 # ==================================================
 
-st.caption(
-"""
+st.caption("""
 Açaí Vida • Projeto Acadêmico de Branding
 
 Instituto Federal de Roraima
 
 Bruno Freitas • 2026
-"""
-)
+""")
