@@ -5,7 +5,6 @@ import io
 import zipfile
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-from reportlab.lib.utils import ImageReader
 
 # ==================================================
 # CONFIGURAÇÃO
@@ -19,14 +18,14 @@ st.set_page_config(
 )
 
 # ==================================================
-# CSS (STYLE AGÊNCIA)
+# CSS
 # ==================================================
 
 st.markdown("""
 <style>
 
 .title {
-    font-size: 56px;
+    font-size: 54px;
     font-weight: 900;
     text-align: center;
     color: #4B1E2F;
@@ -35,22 +34,12 @@ st.markdown("""
 .subtitle {
     text-align: center;
     color: #777;
-    margin-bottom: 20px;
 }
 
 .card {
-    background: #fff;
-    border-radius: 14px;
     padding: 15px;
+    border-radius: 12px;
     border: 1px solid #eee;
-}
-
-.color-card {
-    padding: 25px;
-    border-radius: 14px;
-    color: white;
-    font-weight: bold;
-    text-align: center;
 }
 
 </style>
@@ -66,7 +55,7 @@ col1, col2, col3 = st.columns([1,2,1])
 
 with col2:
     if logo.exists():
-        st.image(str(logo), width=170)
+        st.image(str(logo), width=160)
 
 st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
@@ -74,7 +63,7 @@ st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</d
 st.divider()
 
 # ==================================================
-# FUNÇÃO TÍTULO
+# FUNÇÃO
 # ==================================================
 
 def titulo(n, t):
@@ -87,18 +76,35 @@ def titulo(n, t):
 
 titulo("01", "Identidade Visual")
 
-col1, col2 = st.columns([2,2])
+col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("Logo Principal")
     st.image("editaveis/logo.png", width=250)
 
 with col2:
-    st.subheader("Paleta de Cores")
+    st.subheader("Logos diversas")
+    st.image("editaveis/logos_diversas.png", width=500)
+
+st.divider()
 
 # ==================================================
-# PALETA (CARDS PROFISSIONAIS)
+# CONCEITO
 # ==================================================
+
+titulo("02", "Conceito da Marca")
+
+st.write("""
+A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
+""")
+
+st.divider()
+
+# ==================================================
+# PALETA DE CORES
+# ==================================================
+
+titulo("03", "Paleta de Cores")
 
 cores = [
     ("Roxo Açaí", "#5B2A8C"),
@@ -111,109 +117,84 @@ cores = [
 cols = st.columns(3)
 
 for i, (nome, cor) in enumerate(cores):
-
     with cols[i % 3]:
-
-        st.markdown(f"""
-        <div style="
-            background:{cor};
-            padding:25px;
-            border-radius:14px;
-            color:{'black' if cor in ['#FDFBFE', '#F2CB05'] else 'white'};
-            font-weight:bold;
-            text-align:center;
-        ">
-        {nome}<br>{cor}
-        </div>
-        """, unsafe_allow_html=True)
-
-        if st.button("📋 Copiar HEX", key=f"copy_{i}"):
-            st.success(f"Copiado: {cor}")
-
-st.divider()
-
-# ==================================================
-# LOGOS DIVERSAS
-# ==================================================
-
-titulo("02", "Logos diversas")
-
-st.image("editaveis/logos.png", width=600)
+        st.markdown(
+            f"""
+            <div style="
+                background:{cor};
+                padding:25px;
+                border-radius:12px;
+                color:white;
+                text-align:center;
+                font-weight:bold;
+            ">
+            {nome}<br>{cor}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 st.divider()
 
 # ==================================================
-# CONCEITO
+# 🍨 APLICAÇÃO DA MARCA (RESTAURADO COMPLETO)
 # ==================================================
 
-titulo("03", "Conceito da Marca")
+titulo("04", "Aplicação da Marca")
 
-st.write("""
-A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
-""")
+col1, col2 = st.columns(2)
+
+with col1:
+
+    st.subheader("🥤 Copo Comercial (acai.01)")
+
+    img1 = Path("editaveis/acai.01.png")  # 📌 AQUI COLOCA O COPO
+
+    if img1.exists():
+        st.image(str(img1))
+    else:
+        st.warning("Coloque aqui: editaveis/acai.01.png")
+
+with col2:
+
+    st.subheader("🍨 Taça Premium (acai.02)")
+
+    img2 = Path("editaveis/acai.02.png")  # 📌 AQUI COLOCA A TAÇA
+
+    if img2.exists():
+        st.image(str(img2))
+    else:
+        st.warning("Coloque aqui: editaveis/acai.02.png")
 
 st.divider()
 
 # ==================================================
-# 📄 PDF PROFISSIONAL (COM LOGO + DESIGN)
+# 📱 MOCKUPS RESTAURADO
 # ==================================================
 
-def gerar_pdf():
+titulo("05", "Mockups da Marca")
 
-    buffer = io.BytesIO()
-    pdf = canvas.Canvas(buffer, pagesize=letter)
+col1, col2, col3 = st.columns(3)
 
-    # Capa
-    pdf.setFont("Helvetica-Bold", 26)
-    pdf.drawCentredString(300, 750, "AÇAÍ VIDA")
+with col1:
 
-    pdf.setFont("Helvetica", 14)
-    pdf.drawCentredString(300, 725, "Brandbook de Identidade Visual")
+    st.subheader("Copo")
+    st.image("editaveis/acai.03.png")  # 📌 MOCKUP
 
-    # Logo no PDF
-    logo_path = "editaveis/logo.png"
-    if Path(logo_path).exists():
-        pdf.drawImage(logo_path, 220, 550, width=150, height=150, preserveAspectRatio=True)
+with col2:
 
-    # Linha
-    pdf.line(50, 500, 550, 500)
+    st.subheader("Uniforme")
+    st.image("editaveis/uniforme.png")  # 📌 UNIFORME
 
-    # Paleta
-    pdf.setFont("Helvetica-Bold", 16)
-    pdf.drawString(50, 470, "Paleta de Cores:")
+with col3:
 
-    cores_pdf = [
-        "#5B2A8C",
-        "#D2D914",
-        "#F2CB05",
-        "#2D0B48"
-    ]
-
-    y = 440
-    for c in cores_pdf:
-        pdf.setFont("Helvetica", 12)
-        pdf.drawString(60, y, f"- {c}")
-        y -= 20
-
-    pdf.showPage()
-    pdf.save()
-
-    buffer.seek(0)
-    return buffer
-
-pdf_file = gerar_pdf()
-
-st.download_button(
-    "📄 Baixar Brandbook PDF",
-    data=pdf_file,
-    file_name="acai_vida_brandbook.pdf",
-    mime="application/pdf"
-)
+    st.subheader("Instagram")
+    st.image("editaveis/insta.jpg")  # 📌 SOCIAL
 
 st.divider()
 
 # ==================================================
-# 📦 ZIP KIT COMPLETO DA MARCA
+# 📦 ZIP KIT
 # ==================================================
 
 def gerar_zip():
@@ -226,15 +207,15 @@ def gerar_zip():
             "editaveis/logo.png",
             "editaveis/logos_diversas.png",
             "editaveis/acai.01.png",
-            "editaveis/acai.02.png"
+            "editaveis/acai.02.png",
+            "editaveis/acai.03.png",
+            "editaveis/uniforme.png",
+            "editaveis/insta.jpg",
         ]
 
-        for file in arquivos:
-            if Path(file).exists():
-                z.write(file)
-
-        # adiciona PDF dentro do zip
-        z.writestr("brandbook.pdf", pdf_file.getvalue())
+        for f in arquivos:
+            if Path(f).exists():
+                z.write(f)
 
     buffer.seek(0)
     return buffer
@@ -242,10 +223,45 @@ def gerar_zip():
 zip_file = gerar_zip()
 
 st.download_button(
-    "📦 Baixar Kit Completo da Marca (.zip)",
+    "📦 Baixar Kit da Marca (.zip)",
     data=zip_file,
-    file_name="acai_vida_kit_marca.zip",
+    file_name="acai_vida_kit.zip",
     mime="application/zip"
+)
+
+# ==================================================
+# 📄 PDF SIMPLES (ESTRUTURA)
+# ==================================================
+
+def gerar_pdf():
+
+    buffer = io.BytesIO()
+    pdf = canvas.Canvas(buffer, pagesize=letter)
+
+    pdf.setFont("Helvetica-Bold", 22)
+    pdf.drawCentredString(300, 750, "AÇAÍ VIDA")
+
+    pdf.setFont("Helvetica", 14)
+    pdf.drawCentredString(300, 730, "Brandbook Acadêmico")
+
+    logo_path = "editaveis/logo.png"
+
+    if Path(logo_path).exists():
+        pdf.drawImage(logo_path, 220, 550, width=150, height=150)
+
+    pdf.showPage()
+    pdf.save()
+
+    buffer.seek(0)
+    return buffer
+
+pdf_file = gerar_pdf()
+
+st.download_button(
+    "📄 Baixar Brandbook PDF",
+    data=pdf_file,
+    file_name="brandbook_acai_vida.pdf",
+    mime="application/pdf"
 )
 
 st.divider()
