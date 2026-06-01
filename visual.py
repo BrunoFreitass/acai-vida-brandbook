@@ -93,7 +93,7 @@ with col1:
 
 with col2:
     st.subheader("Logos diversas")
-    st.image("editaveis/logos_diversas.png", width=500)
+    st.image("editaveis/logos.png", width=500)
 
 st.divider()
 
