@@ -3,8 +3,8 @@ import streamlit as st
 from pathlib import Path
 import io
 import zipfile
-from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
 # ==================================================
 # CONFIGURAÇÃO
@@ -18,52 +18,61 @@ st.set_page_config(
 )
 
 # ==================================================
-# CSS
+# CSS LIMPO (SEM CONFLITO)
 # ==================================================
 
 st.markdown("""
 <style>
 
 .title {
-    font-size: 54px;
+    font-size: 56px;
     font-weight: 900;
     text-align: center;
     color: #4B1E2F;
+    margin-top: 10px;
 }
 
 .subtitle {
     text-align: center;
     color: #777;
+    margin-bottom: 20px;
 }
 
-.card {
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid #eee;
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# CAPA
+# CAPA (LOGO + NOME CENTRALIZADO DE VERDADE)
 # ==================================================
 
 logo = Path("editaveis/logo.png")
 
+# 🔥 CENTRALIZAÇÃO REAL (SEM HTML QUEBRADO)
 col1, col2, col3 = st.columns([1,2,1])
 
 with col2:
+    st.markdown('<div class="center">', unsafe_allow_html=True)
+
     if logo.exists():
-        st.image(str(logo), width=160)
+        st.image(str(logo), width=170)
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
 
+st.caption("Instituto Federal de Roraima • Projeto Acadêmico • 2026")
+
 st.divider()
 
 # ==================================================
-# FUNÇÃO
+# FUNÇÃO TÍTULO
 # ==================================================
 
 def titulo(n, t):
@@ -101,7 +110,7 @@ A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
 st.divider()
 
 # ==================================================
-# PALETA DE CORES
+# PALETA DE CORES (CARDS)
 # ==================================================
 
 titulo("03", "Paleta de Cores")
@@ -117,27 +126,26 @@ cores = [
 cols = st.columns(3)
 
 for i, (nome, cor) in enumerate(cores):
+
     with cols[i % 3]:
-        st.markdown(
-            f"""
-            <div style="
-                background:{cor};
-                padding:25px;
-                border-radius:12px;
-                color:white;
-                text-align:center;
-                font-weight:bold;
-            ">
-            {nome}<br>{cor}
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+
+        st.markdown(f"""
+        <div style="
+            background:{cor};
+            padding:25px;
+            border-radius:14px;
+            text-align:center;
+            font-weight:bold;
+            color:white;
+        ">
+        {nome}<br>{cor}
+        </div>
+        """, unsafe_allow_html=True)
 
 st.divider()
 
 # ==================================================
-# 🍨 APLICAÇÃO DA MARCA (RESTAURADO COMPLETO)
+# APLICAÇÃO DA MARCA
 # ==================================================
 
 titulo("04", "Aplicação da Marca")
@@ -145,56 +153,36 @@ titulo("04", "Aplicação da Marca")
 col1, col2 = st.columns(2)
 
 with col1:
-
-    st.subheader("🥤 Copo Comercial (acai.01)")
-
-    img1 = Path("editaveis/acai.01.png")  # 📌 AQUI COLOCA O COPO
-
-    if img1.exists():
-        st.image(str(img1))
-    else:
-        st.warning("Coloque aqui: editaveis/acai.01.png")
+    st.subheader("🥤 Copo Comercial")
+    st.image("editaveis/acai.01.png")
 
 with col2:
-
-    st.subheader("🍨 Taça Premium (acai.02)")
-
-    img2 = Path("editaveis/acai.02.png")  # 📌 AQUI COLOCA A TAÇA
-
-    if img2.exists():
-        st.image(str(img2))
-    else:
-        st.warning("Coloque aqui: editaveis/acai.02.png")
+    st.subheader("🍨 Taça Premium")
+    st.image("editaveis/acai.02.png")
 
 st.divider()
 
 # ==================================================
-# 📱 MOCKUPS RESTAURADO
+# MOCKUPS
 # ==================================================
 
-titulo("05", "Mockups da Marca")
+titulo("05", "Mockups")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-
-    st.subheader("Copo")
-    st.image("editaveis/acai.03.png")  # 📌 MOCKUP
+    st.image("editaveis/acai.03.png", caption="Copo")
 
 with col2:
-
-    st.subheader("Uniforme")
-    st.image("editaveis/uniforme.png")  # 📌 UNIFORME
+    st.image("editaveis/uniforme.png", caption="Uniforme")
 
 with col3:
-
-    st.subheader("Instagram")
-    st.image("editaveis/insta.jpg")  # 📌 SOCIAL
+    st.image("editaveis/insta.jpg", caption="Instagram")
 
 st.divider()
 
 # ==================================================
-# 📦 ZIP KIT
+# ZIP KIT COMPLETO
 # ==================================================
 
 def gerar_zip():
@@ -220,17 +208,17 @@ def gerar_zip():
     buffer.seek(0)
     return buffer
 
-zip_file = gerar_zip()
-
 st.download_button(
     "📦 Baixar Kit da Marca (.zip)",
-    data=zip_file,
+    data=gerar_zip(),
     file_name="acai_vida_kit.zip",
     mime="application/zip"
 )
 
+st.divider()
+
 # ==================================================
-# 📄 PDF SIMPLES (ESTRUTURA)
+# PDF SIMPLES (ESTÁVEL)
 # ==================================================
 
 def gerar_pdf():
@@ -238,16 +226,14 @@ def gerar_pdf():
     buffer = io.BytesIO()
     pdf = canvas.Canvas(buffer, pagesize=letter)
 
-    pdf.setFont("Helvetica-Bold", 22)
+    pdf.setFont("Helvetica-Bold", 26)
     pdf.drawCentredString(300, 750, "AÇAÍ VIDA")
 
     pdf.setFont("Helvetica", 14)
     pdf.drawCentredString(300, 730, "Brandbook Acadêmico")
 
-    logo_path = "editaveis/logo.png"
-
-    if Path(logo_path).exists():
-        pdf.drawImage(logo_path, 220, 550, width=150, height=150)
+    if Path("editaveis/logo.png").exists():
+        pdf.drawImage("editaveis/logo.png", 220, 520, width=150, height=150)
 
     pdf.showPage()
     pdf.save()
@@ -255,11 +241,9 @@ def gerar_pdf():
     buffer.seek(0)
     return buffer
 
-pdf_file = gerar_pdf()
-
 st.download_button(
     "📄 Baixar Brandbook PDF",
-    data=pdf_file,
+    data=gerar_pdf(),
     file_name="brandbook_acai_vida.pdf",
     mime="application/pdf"
 )
