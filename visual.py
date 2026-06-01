@@ -138,7 +138,7 @@ st.divider()
 
 titulo("02", "Logos diversas")
 
-st.image("editaveis/logos_diversas.png", width=600)
+st.image("editaveis/logos.png", width=600)
 
 st.divider()
 
