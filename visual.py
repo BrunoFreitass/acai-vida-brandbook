@@ -18,7 +18,7 @@ st.set_page_config(
 )
 
 # ==================================================
-# CSS LIMPO (SEM CONFLITO)
+# CSS LIMPO
 # ==================================================
 
 st.markdown("""
@@ -38,31 +38,32 @@ st.markdown("""
     margin-bottom: 20px;
 }
 
-.center {
+.center-box {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin-top: 10px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# CAPA (LOGO + NOME CENTRALIZADO DE VERDADE)
+# CAPA (LOGO + NOME PERFEITAMENTE CENTRALIZADOS)
 # ==================================================
 
 logo = Path("editaveis/logo.png")
 
-# 🔥 CENTRALIZAÇÃO REAL (SEM HTML QUEBRADO)
+st.markdown("<div class='center-box'>", unsafe_allow_html=True)
+
 col1, col2, col3 = st.columns([1,2,1])
 
 with col2:
-    st.markdown('<div class="center">', unsafe_allow_html=True)
 
     if logo.exists():
-        st.image(str(logo), width=170)
+        st.image(str(logo), width=180)
 
-    st.markdown("</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
 st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
@@ -110,7 +111,7 @@ A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
 st.divider()
 
 # ==================================================
-# PALETA DE CORES (CARDS)
+# PALETA DE CORES
 # ==================================================
 
 titulo("03", "Paleta de Cores")
@@ -145,7 +146,7 @@ for i, (nome, cor) in enumerate(cores):
 st.divider()
 
 # ==================================================
-# APLICAÇÃO DA MARCA
+# 🧃 APLICAÇÃO DA MARCA (RESTAURO COMPLETO)
 # ==================================================
 
 titulo("04", "Aplicação da Marca")
@@ -154,35 +155,38 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("🥤 Copo Comercial")
-    st.image("editaveis/acai.01.png")
+    st.image("editaveis/açai.01.png")
 
 with col2:
     st.subheader("🍨 Taça Premium")
-    st.image("editaveis/acai.02.png")
+    st.image("editaveis/açai.02.png")
 
 st.divider()
 
 # ==================================================
-# MOCKUPS
+# 📱 MOCKUPS (CARTÕES ESTILO BOTÃO VISUAL)
 # ==================================================
 
-titulo("05", "Mockups")
+titulo("05", "Mockups da Marca")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image("editaveis/acai.03.png", caption="Copo")
+    st.markdown("### 🥤 Copo")
+    st.image("editaveis/acai.03.png", use_container_width=True)
 
 with col2:
-    st.image("editaveis/uniforme.png", caption="Uniforme")
+    st.markdown("### 👕 Uniforme")
+    st.image("editaveis/uniforme.png", use_container_width=True)
 
 with col3:
-    st.image("editaveis/insta.jpg", caption="Instagram")
+    st.markdown("### 📱 Instagram")
+    st.image("editaveis/insta.jpg", use_container_width=True)
 
 st.divider()
 
 # ==================================================
-# ZIP KIT COMPLETO
+# 📦 ZIP COMPLETO
 # ==================================================
 
 def gerar_zip():
@@ -218,7 +222,7 @@ st.download_button(
 st.divider()
 
 # ==================================================
-# PDF SIMPLES (ESTÁVEL)
+# 📄 PDF SIMPLES ESTÁVEL
 # ==================================================
 
 def gerar_pdf():
