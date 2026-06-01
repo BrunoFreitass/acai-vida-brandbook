@@ -83,6 +83,81 @@ def titulo(numero, texto):
     st.header(texto)
 
 # ==================================================
+# 🔥 NOVO: SISTEMA DE LOGOS (ADICIONADO)
+# ==================================================
+
+st.markdown("## Sistema de Identidade Visual")
+
+st.write("""
+A identidade da Açaí Vida é composta por diferentes versões da marca,
+utilizadas conforme o contexto de aplicação.
+""")
+
+logo_principal = Path("editaveis/logo.png")
+logo_negativa = Path("editaveis/logo_negativa.png")
+logo_horizontal = Path("editaveis/logo_horizontal.png")
+logo_icon = Path("editaveis/logo_icon.png")
+
+# LOGO PRINCIPAL
+st.subheader("Logo Principal")
+
+if logo_principal.exists():
+    st.image(str(logo_principal), width=220)
+else:
+    st.warning("Logo principal não encontrada: editaveis/logo.png")
+
+st.divider()
+
+# VARIAÇÕES
+col1, col2 = st.columns(2)
+
+with col1:
+
+    st.markdown("### Versão Negativa")
+
+    if logo_negativa.exists():
+        st.image(str(logo_negativa), width=180)
+    else:
+        st.info("Não encontrada: logo_negativa.png")
+
+with col2:
+
+    st.markdown("### Versão Horizontal")
+
+    if logo_horizontal.exists():
+        st.image(str(logo_horizontal), width=180)
+    else:
+        st.info("Não encontrada: logo_horizontal.png")
+
+st.divider()
+
+col3, col4 = st.columns(2)
+
+with col3:
+
+    st.markdown("### Ícone da Marca")
+
+    if logo_icon.exists():
+        st.image(str(logo_icon), width=120)
+    else:
+        st.info("Não encontrada: logo_icon.png")
+
+with col4:
+
+    st.markdown("### Aplicação")
+
+    st.write("""
+Essas variações são utilizadas em:
+
+- Embalagens
+- Redes sociais
+- Materiais impressos
+- Aplicações reduzidas
+""")
+
+st.divider()
+
+# ==================================================
 # MÉTRICAS
 # ==================================================
 
@@ -170,7 +245,6 @@ tipografia_poppins = Path("editaveis/poppins.png")
 tipografia_montserrat = Path("editaveis/montserrat.png")
 
 # GELATO
-
 st.subheader("Fonte Principal — Gelato Luxe")
 
 col1, col2 = st.columns([2,1])
@@ -202,7 +276,6 @@ with col2:
 st.divider()
 
 # POPPINS
-
 st.subheader("Fonte Secundária — Poppins Bold")
 
 col1, col2 = st.columns([2,1])
@@ -234,7 +307,6 @@ with col2:
 st.divider()
 
 # MONTSERRAT
-
 st.subheader("Fonte de Apoio — Montserrat Regular")
 
 col1, col2 = st.columns([2,1])
@@ -244,7 +316,7 @@ with col1:
     if tipografia_montserrat.exists():
         st.image(str(tipografia_montserrat))
     else:
-        st.warning("Imagem não encontrada: montserrat.png")
+        st.warning("Imagem não encontrada: editaveis/montserrat.png")
 
 with col2:
 
