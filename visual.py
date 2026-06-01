@@ -18,57 +18,60 @@ st.set_page_config(
 )
 
 # ==================================================
-# CSS LIMPO
+# CSS SIMPLES (SEM QUEBRAR STREAMLIT)
 # ==================================================
 
 st.markdown("""
 <style>
 
 .title {
-    font-size: 56px;
+    font-size: 54px;
     font-weight: 900;
-    text-align: center;
     color: #4B1E2F;
-    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 .subtitle {
-    text-align: center;
     color: #777;
-    margin-bottom: 20px;
+    margin-top: 0px;
 }
 
-.center-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.section {
+    margin-top: 25px;
+}
+
+.card {
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.color-box {
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# CAPA (LOGO + NOME PERFEITAMENTE CENTRALIZADOS)
+# CAPA (LOGO + NOME À ESQUERDA — ESTÁVEL)
 # ==================================================
 
 logo = Path("editaveis/logo.png")
 
-st.markdown("<div class='center-box'>", unsafe_allow_html=True)
+col1, col2 = st.columns([1,5])
 
-col1, col2, col3 = st.columns([1,2,1])
+with col1:
+    if logo.exists():
+        st.image(str(logo), width=120)
 
 with col2:
-
-    if logo.exists():
-        st.image(str(logo), width=180)
-
-st.markdown("</div>", unsafe_allow_html=True)
-
-st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
-
-st.caption("Instituto Federal de Roraima • Projeto Acadêmico • 2026")
+    st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
+    st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
 
 st.divider()
 
@@ -111,42 +114,49 @@ A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
 st.divider()
 
 # ==================================================
-# PALETA DE CORES
+# 🎨 PALETA DE CORES (LOGO AO LADO)
 # ==================================================
 
 titulo("03", "Paleta de Cores")
 
-cores = [
-    ("Roxo Açaí", "#5B2A8C"),
-    ("Verde Energia", "#D2D914"),
-    ("Amarelo Tropical", "#F2CB05"),
-    ("Branco Neve", "#FDFBFE"),
-    ("Roxo Profundo", "#2D0B48"),
-]
+col_logo, col_cores = st.columns([1, 3])
 
-cols = st.columns(3)
+with col_logo:
+    st.image("editaveis/logo.png", width=140)
 
-for i, (nome, cor) in enumerate(cores):
+with col_cores:
 
-    with cols[i % 3]:
+    cores = [
+        ("Roxo Açaí", "#5B2A8C"),
+        ("Verde Energia", "#D2D914"),
+        ("Amarelo Tropical", "#F2CB05"),
+        ("Branco Neve", "#FDFBFE"),
+        ("Roxo Profundo", "#2D0B48"),
+    ]
 
-        st.markdown(f"""
-        <div style="
-            background:{cor};
-            padding:25px;
-            border-radius:14px;
-            text-align:center;
-            font-weight:bold;
-            color:white;
-        ">
-        {nome}<br>{cor}
-        </div>
-        """, unsafe_allow_html=True)
+    cols = st.columns(3)
+
+    for i, (nome, cor) in enumerate(cores):
+
+        with cols[i % 3]:
+
+            st.markdown(f"""
+            <div style="
+                background:{cor};
+                padding:22px;
+                border-radius:12px;
+                text-align:center;
+                font-weight:bold;
+                color:white;
+            ">
+            {nome}<br>{cor}
+            </div>
+            """, unsafe_allow_html=True)
 
 st.divider()
 
 # ==================================================
-# 🧃 APLICAÇÃO DA MARCA (RESTAURO COMPLETO)
+# APLICAÇÃO DA MARCA
 # ==================================================
 
 titulo("04", "Aplicação da Marca")
@@ -164,7 +174,7 @@ with col2:
 st.divider()
 
 # ==================================================
-# 📱 MOCKUPS (CARTÕES ESTILO BOTÃO VISUAL)
+# MOCKUPS
 # ==================================================
 
 titulo("05", "Mockups da Marca")
@@ -186,7 +196,7 @@ with col3:
 st.divider()
 
 # ==================================================
-# 📦 ZIP COMPLETO
+# 📦 ZIP KIT
 # ==================================================
 
 def gerar_zip():
@@ -222,7 +232,7 @@ st.download_button(
 st.divider()
 
 # ==================================================
-# 📄 PDF SIMPLES ESTÁVEL
+# 📄 PDF SIMPLES
 # ==================================================
 
 def gerar_pdf():
@@ -231,13 +241,13 @@ def gerar_pdf():
     pdf = canvas.Canvas(buffer, pagesize=letter)
 
     pdf.setFont("Helvetica-Bold", 26)
-    pdf.drawCentredString(300, 750, "AÇAÍ VIDA")
+    pdf.drawString(180, 750, "AÇAÍ VIDA")
 
     pdf.setFont("Helvetica", 14)
-    pdf.drawCentredString(300, 730, "Brandbook Acadêmico")
+    pdf.drawString(160, 730, "Brandbook Acadêmico")
 
     if Path("editaveis/logo.png").exists():
-        pdf.drawImage("editaveis/logo.png", 220, 520, width=150, height=150)
+        pdf.drawImage("editaveis/logo.png", 240, 520, width=120, height=120)
 
     pdf.showPage()
     pdf.save()
