@@ -148,9 +148,9 @@ de tipografias que reforçam a personalidade da marca,
 equilibrando criatividade, legibilidade e modernidade.
 """)
 
-tipografia_logo = Path("gelato.png")
-tipografia_poppins = Path("poppins.png")
-tipografia_montserrat = Path("montserrat.png")
+tipografia_logo = Path("editaveis/gelato.png")
+tipografia_poppins = Path("editaveis/poppins.png")
+tipografia_montserrat = Path("editaveis/montserrat.png")
 
 # GELATO
 
@@ -164,7 +164,7 @@ with col1:
         st.image(str(tipografia_logo))
 
     else:
-        st.warning("Imagem não encontrada: gelato.png")
+        st.warning("Imagem não encontrada: editaveis/gelato.png")
 
 with col2:
 
@@ -197,7 +197,7 @@ with col1:
         st.image(str(tipografia_poppins))
 
     else:
-        st.warning("Imagem não encontrada: poppins.png")
+        st.warning("Imagem não encontrada: editaveis/poppins.png")
 
 with col2:
 
@@ -255,8 +255,8 @@ st.divider()
 # APLICAÇÃO DA MARCA
 # ==================================================
 
-imagem_copo = Path("acai.02.png")
-imagem_taca = Path("acai.01.png")
+imagem_copo = Path("editaveis/acai.02.png")
+imagem_taca = Path("editaveis/acai.01.png")
 
 titulo("04", "Aplicação da Marca")
 
@@ -270,7 +270,7 @@ with col1:
         st.image(str(imagem_copo))
 
     else:
-        st.warning("Imagem não encontrada: acai.02.png")
+        st.warning("Imagem não encontrada: editaveis/acai.02.png")
 
 with col2:
 
@@ -280,7 +280,7 @@ with col2:
         st.image(str(imagem_taca))
 
     else:
-        st.warning("Imagem não encontrada: acai.01.png")
+        st.warning("Imagem não encontrada: editaveis/acai.01.png")
 
 st.divider()
 
@@ -300,33 +300,33 @@ aba1, aba2, aba3 = st.tabs(
 
 with aba1:
 
-    mockup_copo = Path("acai.03.png")
+    mockup_copo = Path("editaveis/acai.03.png")
 
     if mockup_copo.exists():
         st.image(str(mockup_copo))
 
     else:
-        st.info("Imagem não encontrada: acai.03.png")
+        st.info("Imagem não encontrada: editaveis/acai.03.png")
 
 with aba2:
 
-    uniforme = Path("uniforme.png")
+    uniforme = Path("editaveis/uniforme.png")
 
     if uniforme.exists():
         st.image(str(uniforme))
 
     else:
-        st.info("Imagem não encontrada: uniforme.png")
+        st.info("Imagem não encontrada: editaveis/uniforme.png")
 
 with aba3:
 
-    instagram = Path("insta.jpg")
+    instagram = Path("editaveis/insta.jpg")
 
     if instagram.exists():
         st.image(str(instagram))
 
     else:
-        st.info("Imagem não encontrada: insta.jpg")
+        st.info("Imagem não encontrada: editaveis/insta.jpg")
 
 st.divider()
 
