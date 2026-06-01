@@ -8,7 +8,7 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="Açaí Vida | Brandbook",
-    page_icon="🍧",
+    page_icon="editaveis/logo",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -256,7 +256,7 @@ st.divider()
 # ==================================================
 
 imagem_copo = Path("editaveis/acai.02.png")
-imagem_taca = Path("editaveis/acai.01.png")
+imagem_taca = Path("editaveis/açai.02.png")
 
 titulo("04", "Aplicação da Marca")
 
@@ -280,7 +280,7 @@ with col2:
         st.image(str(imagem_taca))
 
     else:
-        st.warning("Imagem não encontrada: editaveis/acai.01.png")
+        st.warning("Imagem não encontrada: editaveis/açai.02.png")
 
 st.divider()
 
