@@ -8,7 +8,7 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="Açaí Vida | Brandbook",
-    page_icon="🍇",
+    page_icon="editaveis/logo",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -87,7 +87,7 @@ def titulo(numero, texto):
 st.markdown("## Identidade Visual da Marca")
 
 logo_principal = Path("editaveis/logo.png")
-logos_diversas = Path("editaveis/logos.png")
+logos_diversas = Path("editaveis/logos_diversas.png")
 
 col1, col2 = st.columns([2, 2])
 
@@ -134,9 +134,9 @@ Esta seção reúne as variações da marca em diferentes aplicações.
 """)
 
 if logos_diversas.exists():
-    st.image(str(logos.png), width=600)
+    st.image(str(logos_diversas), width=600)
 else:
-    st.warning("Crie a imagem: editaveis/logos_diversas.png (negativa + horizontal + ícone)")
+    st.warning("Crie a imagem: editaveis/logos.png (negativa + horizontal + ícone)")
 
 st.divider()
 
