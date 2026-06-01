@@ -9,7 +9,7 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="Açaí Vida | Brandbook",
-    page_icon=r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\mirtilo.png",
+    page_icon= ("mirtilo.png"),
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -27,7 +27,7 @@ def titulo(numero, texto):
 # LOGO
 # ==================================================
 
-logo = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\mirtilo.png")
+logo = Path("mirtilo.png")
 
 col1, col2, col3 = st.columns([2,1,2])
 
@@ -153,15 +153,15 @@ equilibrando criatividade, legibilidade e modernidade.
 # Caminhos das imagens
 
 tipografia_logo = Path(
-    r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\gelato.png"
+    "gelato.png"
 )
 
 tipografia_poppins = Path(
-    r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\poppins.png"
+    "poppins.png"
 )
 
 tipografia_montserrat = Path(
-    r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\montserrat.png"
+    "montserrat.png"
 )
 
 # ----------------------------------
@@ -184,7 +184,7 @@ with col1:
     else:
 
         st.warning(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\gelato.png"
+            "gelato.png"
         )
 
 with col2:
@@ -226,7 +226,7 @@ with col1:
     else:
 
         st.warning(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\poppins.png"
+            "poppins.png"
         )
 
 with col2:
@@ -268,7 +268,7 @@ with col1:
     else:
 
         st.warning(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\Montserrat.png"
+            "Montserrat.png"
         )
 
 with col2:
@@ -294,8 +294,8 @@ st.divider()
 # IMAGENS
 # ==================================================
 
-imagem_copo = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\açai.02.png")
-imagem_taca = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\açai.01.png")
+imagem_copo = Path("açai.02.png")
+imagem_taca = Path("açai.01.png")
 
 # ==================================================
 # APLICAÇÃO DA MARCA
@@ -318,7 +318,7 @@ with col1:
 
     else:
 
-        st.warning(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\acai.01.png")
+        st.warning("acai.01.png")
 
 with col2:
 
@@ -333,7 +333,7 @@ with col2:
 
     else:
 
-        st.warning(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\açai.01.png")
+        st.warning("açai.01.png")
 
 st.divider()
 
@@ -353,7 +353,7 @@ aba1, aba2, aba3 = st.tabs(
 
 with aba1:
 
-    mockup_copo = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\acai.03.png")
+    mockup_copo = Path("acai.03.png")
 
     if mockup_copo.exists():
 
@@ -365,12 +365,12 @@ with aba1:
     else:
 
         st.info(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\acai.03.png"
+            "acai.03.png"
         )
 
 with aba2:
 
-    uniforme = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\uniforme.png")
+    uniforme = Path("uniforme.png")
 
     if uniforme.exists():
 
@@ -382,12 +382,12 @@ with aba2:
     else:
 
         st.info(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\uniforme.png"
+            "uniforme.png"
         )
 
 with aba3:
 
-    instagram = Path(r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\insta.jpg")
+    instagram = Path("insta.jpg")
 
     if instagram.exists():
 
@@ -399,7 +399,7 @@ with aba3:
     else:
 
         st.info(
-            r"C:\Users\Bruno\Desktop\Fotos Extensão\editaveis\insta.jpg"
+            "insta.jpg"
         )
 
 st.divider()
