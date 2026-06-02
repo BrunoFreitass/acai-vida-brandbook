@@ -7,22 +7,39 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
 # ==================================================
-# IMAGENS DE FUNDO
-# ==================================================
-
-FUNDO_CAPA = "fundo_01.jpg"
-FUNDO_IDENTIDADE = "fundo_02.jpg"
-FUNDO_CONCEITO = "fundo_03.jpg"
-FUNDO_TIPOGRAFIA = "fundo_04.jpg"
-FUNDO_PALETA = "fundo_04.jpg"
-FUNDO_APLICACOES = "fundo_05.jpg"
-FUNDO_MOCKUPS = "fundo_01.jpg"
-
-# ==================================================
 # CONFIGURAÇÃO
 # ==================================================
 
 st.set_page_config(
+    import base64
+
+def imagem_base64(caminho):
+    arquivo = Path(caminho)
+    if not arquivo.exists():
+        return ""
+
+    with open(arquivo, "rb") as img:
+        return base64.b64encode(img.read()).decode()
+
+fundo = imagem_base64(FUNDO_CAPA)
+
+if fundo:
+    st.markdown(f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/jpeg;base64,{fundo}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }}
+
+    .main .block-container {{
+        background: rgba(255,255,255,0.88);
+        padding: 2rem;
+        border-radius: 20px;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
     page_title="Açaí Vida | Brandbook",
     page_icon="logo_01.png",
     layout="wide",
@@ -121,19 +138,19 @@ with col2:
 
 📁 Imagens de Fundo
 
-CAPA → fundo_01.jpg
+CAPA → fundo_01.png
 
-IDENTIDADE → fundo_02.jpg
+IDENTIDADE → fundo_02.png
 
-CONCEITO → fundo_03.jpg
+CONCEITO → fundo_03.png
 
-TIPOGRAFIA → fundo_04.jpg
+TIPOGRAFIA → fundo_04.png
 
-PALETA → fundo_04.jpg
+PALETA → fundo_04.png
 
-APLICAÇÕES → fundo_05.jpg
+APLICAÇÕES → fundo_05.png
 
-MOCKUPS → fundo_01.jpg
+MOCKUPS → fundo_01.png
 """)
 
 st.divider()
@@ -333,7 +350,11 @@ def gerar_zip():
 
     buffer = io.BytesIO()
 
-    with zipfile.ZipFile(buffer, "w") as z:
+    with zipfile.ZipFile(
+    buffer,
+    "w",
+    zipfile.ZIP_DEFLATED
+) as z:
 
         arquivos = [
             "Logos_01.png",
