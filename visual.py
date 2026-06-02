@@ -236,7 +236,7 @@ with col2:
     st.image("uniforme_01.png", caption="Uniforme")
 
 with col3:
-    st.image("insta_01.jpg", caption="Instagram")
+    st.image("insta_01.png", caption="Instagram")
 
 st.divider()
 
