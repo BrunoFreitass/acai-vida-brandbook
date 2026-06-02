@@ -258,7 +258,7 @@ def gerar_pdf():
     pdf.drawString(160, 730, "Brandbook Acadêmico")
 
     if Path("editaveis/logo.png").exists():
-        pdf.drawImage("editaveis/logo_01.png", 240, 520, width=120, height=120)
+        pdf.drawImage("logo_01.png", 240, 520, width=120, height=120)
 
     pdf.showPage()
     pdf.save()
@@ -273,16 +273,24 @@ def gerar_zip():
     with zipfile.ZipFile(buffer, "w") as z:
 
         arquivos = [
-            "editaveis/logo.png",
-            "editaveis/logos.png",
-            "editaveis/acai.01.png",
-            "editaveis/acai.02.png",
-            "editaveis/acai.03.png",
-            "editaveis/uniforme.png",
-            "editaveis/insta.jpg",
-            "editaveis/gelato.png",
-            "editaveis/poppins.png",
-            "editaveis/montserrat.png",
+            "Logos_01.png",
+            "acai_01.png",
+            "acai_02.png",
+            "banner_01.png",
+            "fundo_01.png",
+            "fundo_02.png",
+            "fundo_03.jpg",
+            "fundo_05.png",
+            "gelato.png",
+            "insta_01.png"
+            "logo_01.png"
+            "mirtilo.png"
+            "montserrat.png"
+            "out_01.png"
+            "poppins.png"
+            "sorvete_01.png"
+            "sorvete_02.png"
+            "uniforme_01.png",
         ]
 
         for f in arquivos:
