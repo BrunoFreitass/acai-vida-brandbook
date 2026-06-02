@@ -1,4 +1,3 @@
-# python
 import streamlit as st
 from pathlib import Path
 import io
@@ -28,6 +27,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
 def banner(imagem):
     if Path(imagem).exists():
         st.image(
@@ -35,37 +35,29 @@ def banner(imagem):
             use_container_width=True
         )
 
-
 # ==================================================
 # 🎨 CSS COM ANIMAÇÕES SUAVES
 # ==================================================
 
 st.markdown("""
-<link rel="stylesheet"
-href="https://fonts.cdnfonts.com/css/armonioso">
-
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/armonioso">
 <style>
-
 .block-container{
     max-width:1400px;
     padding-top:0rem;
 }
-
 .title{
     font-family:'Armonioso', cursive;
     font-size:72px;
     color:#4B1E2F;
 }
-
 .subtitle{
     font-size:22px;
     color:#666;
 }
-
 img{
     border-radius:16px;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -75,10 +67,9 @@ img{
 
 banner(FUNDO_CAPA)
 
-col1, col2 = st.columns([1,4])
+col1, col2 = st.columns([1, 4])
 
 with col1:
-
     if Path("logo_01.png").exists():
         st.image(
             "logo_01.png",
@@ -86,7 +77,6 @@ with col1:
         )
 
 with col2:
-
     st.markdown(
         "<div class='title'>AÇAÍ VIDA</div>",
         unsafe_allow_html=True
@@ -113,10 +103,7 @@ banner(FUNDO_IDENTIDADE)
 
 st.header("01 • Identidade Visual")
 if Path(FUNDO_IDENTIDADE).exists():
-    
     st.image(FUNDO_IDENTIDADE, use_container_width=True)
-    
-st.header("01 • Identidade Visual")
 
 col1, col2 = st.columns(2)
 
@@ -137,11 +124,8 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_CONCEITO)
 
 st.header("02 • Conceito da Marca")
-
 if Path(FUNDO_CONCEITO).exists():
     st.image(FUNDO_CONCEITO, use_container_width=True)
-    
-st.header("02 • Conceito da Marca")
 
 st.write("""
 A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
@@ -156,11 +140,8 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_TIPOGRAFIA)
 
 st.header("03 • Tipografia")
-
 if Path(FUNDO_TIPOGRAFIA).exists():
     st.image(FUNDO_TIPOGRAFIA, use_container_width=True)
-    
-st.header("03 • Tipografia")
 
 col1, col2, col3 = st.columns(3)
 
@@ -182,25 +163,21 @@ with col3:
 st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
-# PALETA DE CORES (LOGO AO LADO)
+# PALETA DE CORES
 # ==================================================
 
 banner(FUNDO_PALETA)
 
 st.header("04 • Paleta de Cores")
-
 if Path(FUNDO_PALETA).exists():
     st.image(FUNDO_PALETA, use_container_width=True)
-    
-st.header("04 • Paleta de Cores")
 
-col_logo, col_cores = st.columns([1,3])
+col_logo, col_cores = st.columns([1, 3])
 
 with col_logo:
     st.image("logo_01.png", width=120)
 
 with col_cores:
-
     cores = [
         ("Roxo Açaí", "#5B2A8C"),
         ("Verde Energia", "#D2D914"),
@@ -212,11 +189,8 @@ with col_cores:
     cols = st.columns(3)
 
     for i, (nome, cor) in enumerate(cores):
-
         with cols[i % 3]:
-
             text_color = "black" if cor.upper() == "#FDFBFE" else "white"
-
             st.markdown(f"""
             <div style="
                 background:{cor};
@@ -239,11 +213,8 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_APLICACOES)
 
 st.header("05 • Aplicação da Marca")
-
 if Path(FUNDO_APLICACOES).exists():
     st.image(FUNDO_APLICACOES, use_container_width=True)
-    
-st.header("05 • Aplicação da Marca")
 
 col1, col2 = st.columns(2)
 
@@ -266,11 +237,8 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_MOCKUPS)
 
 st.header("06 • Mockups")
-
 if Path(FUNDO_MOCKUPS).exists():
     st.image(FUNDO_MOCKUPS, use_container_width=True)
-    
-st.header("06 • Mockups")
 
 col1, col2, col3 = st.columns(3)
 
@@ -312,7 +280,6 @@ with col2:
         "Nota",
         f"{avaliacao}/10"
     )
-)
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -323,16 +290,13 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 st.header("08 • Exportação")
 
 def gerar_pdf():
-
     buffer = io.BytesIO()
-
     pdf = canvas.Canvas(
         buffer,
         pagesize=letter
     )
 
     pdf.setTitle("Brandbook Açaí Vida")
-
     pdf.setFont("Helvetica-Bold", 24)
     pdf.drawString(160, 760, "AÇAÍ VIDA")
 
@@ -340,7 +304,6 @@ def gerar_pdf():
     pdf.drawString(150, 735, "Brandbook Acadêmico")
 
     if Path("logo_01.png").exists():
-
         pdf.drawImage(
             "logo_01.png",
             220,
@@ -352,21 +315,12 @@ def gerar_pdf():
 
     pdf.showPage()
     pdf.save()
-
     buffer.seek(0)
-
     return buffer
-    
+
 def gerar_zip():
-
     buffer = io.BytesIO()
-
-    with zipfile.ZipFile(
-    buffer,
-    "w",
-    zipfile.ZIP_DEFLATED
-) as z:
-
+    with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as z:
         arquivos = [
             "Logos_01.png",
             "acai_01.png",
@@ -374,7 +328,7 @@ def gerar_zip():
             "banner_01.png",
             "fundo_01.png",
             "fundo_02.png",
-            "fundo_03.png"
+            "fundo_03.png",  # Adicionada a vírgula corrigindo a concatenação
             "fundo_04.png",
             "fundo_05.png",
             "gelato.png",
@@ -397,7 +351,6 @@ def gerar_zip():
     return buffer
 
 st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application/pdf")
-
 st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip")
 
 st.markdown("<br><br>", unsafe_allow_html=True)
