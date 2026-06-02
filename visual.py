@@ -3,6 +3,7 @@ import streamlit as st
 from pathlib import Path
 import io
 import zipfile
+import base64
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
@@ -11,6 +12,42 @@ from reportlab.lib.pagesizes import letter
 # ==================================================
 
 st.set_page_config(
+    # ==================================================
+# FUNDO DA APLICAÇÃO
+# ==================================================
+
+def imagem_base64(caminho):
+    arquivo = Path(caminho)
+
+    if not arquivo.exists():
+        return None
+
+    with open(arquivo, "rb") as img:
+        return base64.b64encode(img.read()).decode()
+
+
+fundo = imagem_base64(FUNDO_CAPA)
+
+if fundo:
+    st.markdown(f"""
+    <style>
+
+    .stApp {{
+        background-image: url("data:image/jpeg;base64,{fundo}");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+
+    .main .block-container {{
+        background: rgba(255,255,255,0.90);
+        border-radius: 20px;
+        padding: 2rem;
+    }}
+
+    </style>
+    """, unsafe_allow_html=True)
     import base64
 
 def imagem_base64(caminho):
@@ -134,25 +171,6 @@ with col1:
 with col2:
     st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
     st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
-    st.info("""
-
-📁 Imagens de Fundo
-
-CAPA → fundo_01.png
-
-IDENTIDADE → fundo_02.png
-
-CONCEITO → fundo_03.png
-
-TIPOGRAFIA → fundo_04.png
-
-PALETA → fundo_04.png
-
-APLICAÇÕES → fundo_05.png
-
-MOCKUPS → fundo_01.png
-""")
-
 st.divider()
 
 # ==================================================
