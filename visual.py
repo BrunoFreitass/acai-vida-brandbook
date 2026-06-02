@@ -144,17 +144,17 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.subheader("Gelato Luxe")
-    st.image("editaveis/gelato.png")
+    st.image("gelato.png")
     st.caption("Fonte principal da marca")
 
 with col2:
     st.subheader("Poppins Bold")
-    st.image("editaveis/poppins.png")
+    st.image("poppins.png")
     st.caption("Fonte secundária")
 
 with col3:
     st.subheader("Montserrat Regular")
-    st.image("editaveis/montserrat.png")
+    st.image("montserrat.png")
     st.caption("Fonte de apoio")
 
 st.divider()
