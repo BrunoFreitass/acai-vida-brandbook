@@ -214,10 +214,12 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("🥤 Copo Comercial")
     st.image("acai_01.png")
+    st.image("acai_02.png")
 
 with col2:
     st.subheader("🍨 Taça Premium")
-    st.image("acai_02.png")
+    st.image("sorvete_02.png")
+    st.image("banner_01.png")
 
 st.divider()
 
