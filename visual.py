@@ -36,7 +36,7 @@ st.set_page_config(
 st.markdown("""
 <link rel="stylesheet"
 href="https://fonts.cdnfonts.com/css/armonioso">
-""", unsafe_allow_html=True)
+
 <style>
 
 /* fade-in geral */
@@ -56,6 +56,7 @@ body {
     font-weight: 900;
     color: #4B1E2F;
     animation: slideUp 0.8s ease-in-out;
+}
 
 .subtitle {
     color: #777;
@@ -313,8 +314,8 @@ def gerar_pdf():
     pdf.setFont("Helvetica", 14)
     pdf.drawString(160, 730, "Brandbook Acadêmico")
 
-    if Path("editaveis/logo.png").exists():
-        pdf.drawImage("logo_01.png", 240, 520, width=120, height=120)
+    if Path("logo_01.png").exists():
+    pdf.drawImage("logo_01.png", 240, 520, width=120, height=120)
 
     pdf.showPage()
     pdf.save()
@@ -328,26 +329,26 @@ def gerar_zip():
 
     with zipfile.ZipFile(buffer, "w") as z:
 
-        arquivos = [
-            "Logos_01.png",
-            "acai_01.png",
-            "acai_02.png",
-            "banner_01.png",
-            "fundo_01.png",
-            "fundo_02.png",
-            "fundo_03.jpg",
-            "fundo_05.png",
-            "gelato.png",
-            "insta_01.png"
-            "logo_01.png"
-            "mirtilo.png"
-            "montserrat.png"
-            "out_01.png"
-            "poppins.png"
-            "sorvete_01.png"
-            "sorvete_02.png"
-            "uniforme_01.png",
-        ]
+    arquivos = [
+    "Logos_01.png",
+    "acai_01.png",
+    "acai_02.png",
+    "banner_01.png",
+    "fundo_01.png",
+    "fundo_02.png",
+    "fundo_03.jpg",
+    "fundo_05.png",
+    "gelato.png",
+    "insta_01.png",
+    "logo_01.png",
+    "mirtilo.png",
+    "montserrat.png",
+    "out_01.png",
+    "poppins.png",
+    "sorvete_01.png",
+    "sorvete_02.png",
+    "uniforme_01.png",
+]
 
         for f in arquivos:
             if Path(f).exists():
