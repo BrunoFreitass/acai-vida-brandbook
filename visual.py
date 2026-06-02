@@ -315,14 +315,20 @@ def gerar_pdf():
     pdf.drawString(160, 730, "Brandbook Acadêmico")
 
     if Path("logo_01.png").exists():
-    pdf.drawImage("logo_01.png", 240, 520, width=120, height=120)
+        pdf.drawImage(
+            "logo_01.png",
+            240,
+            520,
+            width=120,
+            height=120
+        )
 
     pdf.showPage()
     pdf.save()
 
     buffer.seek(0)
     return buffer
-
+    
 def gerar_zip():
 
     buffer = io.BytesIO()
