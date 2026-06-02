@@ -2,6 +2,7 @@ import streamlit as st
 from pathlib import Path
 import io
 import zipfile
+import base64
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
@@ -30,13 +31,20 @@ st.set_page_config(
 
 def banner(imagem):
     if Path(imagem).exists():
-        st.image(
-            imagem,
-            use_container_width=True
+        with open(imagem, "rb") as f:
+            data = base64.b64encode(f.read()).decode("utf-8")
+        
+        ext = Path(imagem).suffix.replace(".", "").lower()
+        mime = f"image/{ext}" if ext in ["png", "jpg", "jpeg"] else "image/png"
+        
+        # Converte em HTML controlado impedindo quebra de páginas ou grandes lacunas
+        st.markdown(
+            f'<img src="data:{mime};base64,{data}" style="width:100%; max-height:200px; object-fit:cover; border-radius:16px; margin-bottom:20px; margin-top:10px;">',
+            unsafe_allow_html=True
         )
 
 # ==================================================
-# 🎨 CSS COM ANIMAÇÕES SUAVES
+# 🎨 CSS CUSTOMIZADO
 # ==================================================
 
 st.markdown("""
@@ -102,8 +110,6 @@ with col2:
 banner(FUNDO_IDENTIDADE)
 
 st.header("01 • Identidade Visual")
-if Path(FUNDO_IDENTIDADE).exists():
-    st.image(FUNDO_IDENTIDADE, use_container_width=True)
 
 col1, col2 = st.columns(2)
 
@@ -124,8 +130,6 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_CONCEITO)
 
 st.header("02 • Conceito da Marca")
-if Path(FUNDO_CONCEITO).exists():
-    st.image(FUNDO_CONCEITO, use_container_width=True)
 
 st.write("""
 A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
@@ -140,8 +144,6 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_TIPOGRAFIA)
 
 st.header("03 • Tipografia")
-if Path(FUNDO_TIPOGRAFIA).exists():
-    st.image(FUNDO_TIPOGRAFIA, use_container_width=True)
 
 col1, col2, col3 = st.columns(3)
 
@@ -169,8 +171,6 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_PALETA)
 
 st.header("04 • Paleta de Cores")
-if Path(FUNDO_PALETA).exists():
-    st.image(FUNDO_PALETA, use_container_width=True)
 
 col_logo, col_cores = st.columns([1, 3])
 
@@ -213,8 +213,6 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_APLICACOES)
 
 st.header("05 • Aplicação da Marca")
-if Path(FUNDO_APLICACOES).exists():
-    st.image(FUNDO_APLICACOES, use_container_width=True)
 
 col1, col2 = st.columns(2)
 
@@ -237,8 +235,6 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 banner(FUNDO_MOCKUPS)
 
 st.header("06 • Mockups")
-if Path(FUNDO_MOCKUPS).exists():
-    st.image(FUNDO_MOCKUPS, use_container_width=True)
 
 col1, col2, col3 = st.columns(3)
 
@@ -296,7 +292,7 @@ def gerar_pdf():
         pagesize=letter
     )
 
-    pdf.setTitle("Brandbook Açaí Vida")
+    pdf.setTitle("Brandbook Brandbook Açaí Vida")
     pdf.setFont("Helvetica-Bold", 24)
     pdf.drawString(160, 760, "AÇAÍ VIDA")
 
@@ -328,7 +324,7 @@ def gerar_zip():
             "banner_01.png",
             "fundo_01.png",
             "fundo_02.png",
-            "fundo_03.png",  # Adicionada a vírgula corrigindo a concatenação
+            "fundo_03.png",
             "fundo_04.png",
             "fundo_05.png",
             "gelato.png",
