@@ -34,7 +34,6 @@ st.set_page_config(
 # ==================================================
 
 st.markdown("""
-st.markdown("""
 <link rel="stylesheet"
 href="https://fonts.cdnfonts.com/css/armonioso">
 """, unsafe_allow_html=True)
@@ -118,6 +117,7 @@ with col2:
     st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
     st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
     st.info("""
+
 📁 Imagens de Fundo
 
 CAPA → fundo_01.jpg
