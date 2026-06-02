@@ -7,6 +7,18 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
 # ==================================================
+# IMAGENS DE FUNDO
+# ==================================================
+
+FUNDO_CAPA = "fundo_01.jpg"
+FUNDO_IDENTIDADE = "fundo_02.jpg"
+FUNDO_CONCEITO = "fundo_03.jpg"
+FUNDO_TIPOGRAFIA = "fundo_04.jpg"
+FUNDO_PALETA = "fundo_04.jpg"
+FUNDO_APLICACOES = "fundo_05.jpg"
+FUNDO_MOCKUPS = "fundo_01.jpg"
+
+# ==================================================
 # CONFIGURAÇÃO
 # ==================================================
 
@@ -22,6 +34,10 @@ st.set_page_config(
 # ==================================================
 
 st.markdown("""
+st.markdown("""
+<link rel="stylesheet"
+href="https://fonts.cdnfonts.com/css/armonioso">
+""", unsafe_allow_html=True)
 <style>
 
 /* fade-in geral */
@@ -36,11 +52,11 @@ body {
 
 /* títulos */
 .title {
+    font-family: 'Armonioso', cursive;
     font-size: 54px;
     font-weight: 900;
     color: #4B1E2F;
     animation: slideUp 0.8s ease-in-out;
-}
 
 .subtitle {
     color: #777;
@@ -101,6 +117,23 @@ with col1:
 with col2:
     st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
     st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
+    st.info("""
+📁 Imagens de Fundo
+
+CAPA → fundo_01.jpg
+
+IDENTIDADE → fundo_02.jpg
+
+CONCEITO → fundo_03.jpg
+
+TIPOGRAFIA → fundo_04.jpg
+
+PALETA → fundo_04.jpg
+
+APLICAÇÕES → fundo_05.jpg
+
+MOCKUPS → fundo_01.jpg
+""")
 
 st.divider()
 
@@ -243,10 +276,31 @@ with col3:
 st.divider()
 
 # ==================================================
+# COMENTÁRIOS E AVALIAÇÕES
+# ==================================================
+
+st.header("07 • Comentários e Avaliações")
+
+comentarios = st.text_area(
+    "Comentários",
+    height=200,
+    placeholder="Digite observações, sugestões ou avaliações do projeto..."
+)
+
+avaliacao = st.slider(
+    "Avaliação Geral",
+    min_value=1,
+    max_value=10,
+    value=10
+)
+
+st.divider()
+
+# ==================================================
 # EXPORTAÇÃO
 # ==================================================
 
-st.header("07 • Exportação")
+st.header("08 • Exportação")
 
 def gerar_pdf():
 
