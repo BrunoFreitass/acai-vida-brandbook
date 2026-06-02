@@ -11,13 +11,13 @@ from reportlab.lib.pagesizes import letter
 # IMAGENS DE FUNDO
 # ==================================================
 
-FUNDO_CAPA = "fundo_01.jpg"
-FUNDO_IDENTIDADE = "fundo_02.jpg"
-FUNDO_CONCEITO = "fundo_03.jpg"
-FUNDO_TIPOGRAFIA = "fundo_04.jpg"
-FUNDO_PALETA = "fundo_04.jpg"
-FUNDO_APLICACOES = "fundo_05.jpg"
-FUNDO_MOCKUPS = "fundo_01.jpg"
+FUNDO_CAPA = "fundo_01.png"
+FUNDO_IDENTIDADE = "fundo_02.png"
+FUNDO_CONCEITO = "fundo_03.png"
+FUNDO_TIPOGRAFIA = "fundo_04.png"
+FUNDO_PALETA = "fundo_04.png"
+FUNDO_APLICACOES = "fundo_05.png"
+FUNDO_MOCKUPS = "fundo_01.png"
 
 # ==================================================
 # CONFIGURAÇÃO
@@ -70,74 +70,35 @@ if fundo:
 # 🎨 CSS COM ANIMAÇÕES SUAVES
 # ==================================================
 
-st.markdown("""
-<link rel="stylesheet"
-href="https://fonts.cdnfonts.com/css/armonioso">
+if fundo:
+    st.markdown(
+        f"""
+        <style>
 
-<style>
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{fundo}") !important;
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+        }}
 
-/* fade-in geral */
-body {
-    animation: fadeIn 1s ease-in-out;
-}
+        [data-testid="stHeader"] {{
+            background: transparent !important;
+        }}
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
+        .main .block-container {{
+            background-color: rgba(255,255,255,0.88);
+            padding: 2rem;
+            border-radius: 24px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }}
 
-/* títulos */
-.title {
-    font-family: 'Armonioso', cursive;
-    font-size: 54px;
-    font-weight: 900;
-    color: #4B1E2F;
-    animation: slideUp 0.8s ease-in-out;
-}
-
-.subtitle {
-    color: #777;
-    animation: fadeIn 1.2s ease-in-out;
-}
-
-/* entrada de seções */
-section, div.block-container {
-    animation: fadeIn 1s ease-in-out;
-}
-
-/* cards de cores */
-div[style*="background"] {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-div[style*="background"]:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-/* imagens hover */
-img {
-    transition: transform 0.3s ease;
-}
-
-img:hover {
-    transform: scale(1.02);
-}
-
-/* slide up */
-@keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-</style>
-""", unsafe_allow_html=True)
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 # ==================================================
 # CAPA (LOGO + NOME ESQUERDA)
@@ -166,11 +127,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("Logo Principal")
-    st.image("logo_01.png", width=250)
+    st.image("logo_01.png", use_container_width=True)
 
 with col2:
     st.subheader("Logos diversas")
-    st.image("Logos_01.png", width=500)
+    st.image("Logos_01.png", use_container_width=True)
 
 st.divider()
 
@@ -196,17 +157,17 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.subheader("Gelato Luxe")
-    st.image("gelato.png")
+    st.image("gelato.png", use_container_width=True)
     st.caption("Fonte principal da marca")
 
 with col2:
     st.subheader("Poppins Bold")
-    st.image("poppins.png")
+    st.image("poppins.png", use_container_width=True)
     st.caption("Fonte secundária")
 
 with col3:
     st.subheader("Montserrat Regular")
-    st.image("montserrat.png")
+    st.image("montserrat.png", use_container_width=True)
     st.caption("Fonte de apoio")
 
 st.divider()
@@ -265,13 +226,13 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("🥤 Copo Comercial")
-    st.image("acai_01.png")
-    st.image("acai_02.png")
+    st.image("acai_01.png", use_container_width=True)
+    st.image("acai_02.png", use_container_width=True)
 
 with col2:
     st.subheader("🍨 Taça Premium")
-    st.image("sorvete_02.png")
-    st.image("banner_01.png")
+    st.image("sorvete_02.png", use_container_width=True)
+    st.image("banner_01.png", use_container_width=True)
 
 st.divider()
 
@@ -284,13 +245,13 @@ st.header("06 • Mockups")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image("out_01.png", caption="Outdoor")
+    st.image("out_01.png", caption="Outdoor", use_container_width=True)
 
 with col2:
-    st.image("uniforme_01.png", caption="Uniforme")
+    st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)
 
 with col3:
-    st.image("insta_01.png", caption="Instagram")
+    st.image("insta_01.png", caption="Instagram", use_container_width=True)
 
 st.divider()
 
@@ -364,7 +325,7 @@ def gerar_zip():
             "banner_01.png",
             "fundo_01.png",
             "fundo_02.png",
-            "fundo_03.jpg",
+            "fundo_03.png",
             "fundo_05.png",
             "gelato.png",
             "insta_01.png",
