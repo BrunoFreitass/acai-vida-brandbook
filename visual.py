@@ -28,6 +28,12 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+def banner(imagem):
+    if Path(imagem).exists():
+        st.image(
+            imagem,
+            use_container_width=True
+        )
 
 
 # ==================================================
@@ -43,33 +49,21 @@ href="https://fonts.cdnfonts.com/css/armonioso">
 .block-container{
     max-width:1400px;
     padding-top:0rem;
-    padding-bottom:3rem;
 }
 
 .title{
     font-family:'Armonioso', cursive;
     font-size:72px;
-    font-weight:900;
     color:#4B1E2F;
 }
 
 .subtitle{
-    font-size:20px;
+    font-size:22px;
     color:#666;
 }
 
-.secao{
-    padding-top:40px;
-    padding-bottom:40px;
-}
-
 img{
-    border-radius:18px;
-    transition:all .3s ease;
-}
-
-img:hover{
-    transform:scale(1.02);
+    border-radius:16px;
 }
 
 </style>
@@ -79,17 +73,17 @@ img:hover{
 # CAPA
 # ==================================================
 
-if Path(FUNDO_CAPA).exists():
-    st.image(FUNDO_CAPA, use_container_width=True)
-
-st.markdown("<br>", unsafe_allow_html=True)
+banner(FUNDO_CAPA)
 
 col1, col2 = st.columns([1,4])
 
 with col1:
 
     if Path("logo_01.png").exists():
-        st.image("logo_01.png", use_container_width=True)
+        st.image(
+            "logo_01.png",
+            use_container_width=True
+        )
 
 with col2:
 
@@ -111,13 +105,15 @@ with col2:
 **Projeto de Extensão:** Brandbook
 """)
 
-st.markdown("<br><br>", unsafe_allow_html=True)
-
 # ==================================================
 # IDENTIDADE VISUAL
 # ==================================================
 
+banner(FUNDO_IDENTIDADE)
+
+st.header("01 • Identidade Visual")
 if Path(FUNDO_IDENTIDADE).exists():
+    
     st.image(FUNDO_IDENTIDADE, use_container_width=True)
     
 st.header("01 • Identidade Visual")
@@ -132,11 +128,15 @@ with col2:
     st.subheader("Logos diversas")
     st.image("Logos_01.png", use_container_width=True)
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # CONCEITO
 # ==================================================
+
+banner(FUNDO_CONCEITO)
+
+st.header("02 • Conceito da Marca")
 
 if Path(FUNDO_CONCEITO).exists():
     st.image(FUNDO_CONCEITO, use_container_width=True)
@@ -147,11 +147,15 @@ st.write("""
 A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
 """)
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # TIPOGRAFIA
 # ==================================================
+
+banner(FUNDO_TIPOGRAFIA)
+
+st.header("03 • Tipografia")
 
 if Path(FUNDO_TIPOGRAFIA).exists():
     st.image(FUNDO_TIPOGRAFIA, use_container_width=True)
@@ -175,11 +179,15 @@ with col3:
     st.image("montserrat.png", use_container_width=True)
     st.caption("Fonte de apoio")
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # PALETA DE CORES (LOGO AO LADO)
 # ==================================================
+
+banner(FUNDO_PALETA)
+
+st.header("04 • Paleta de Cores")
 
 if Path(FUNDO_PALETA).exists():
     st.image(FUNDO_PALETA, use_container_width=True)
@@ -222,11 +230,15 @@ with col_cores:
             </div>
             """, unsafe_allow_html=True)
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # APLICAÇÃO
 # ==================================================
+
+banner(FUNDO_APLICACOES)
+
+st.header("05 • Aplicação da Marca")
 
 if Path(FUNDO_APLICACOES).exists():
     st.image(FUNDO_APLICACOES, use_container_width=True)
@@ -245,11 +257,15 @@ with col2:
     st.image("sorvete_02.png", use_container_width=True)
     st.image("banner_01.png", use_container_width=True)
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # MOCKUPS
 # ==================================================
+
+banner(FUNDO_MOCKUPS)
+
+st.header("06 • Mockups")
 
 if Path(FUNDO_MOCKUPS).exists():
     st.image(FUNDO_MOCKUPS, use_container_width=True)
@@ -267,7 +283,7 @@ with col2:
 with col3:
     st.image("insta_01.png", caption="Instagram", use_container_width=True)
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # COMENTÁRIOS E AVALIAÇÕES
@@ -281,14 +297,24 @@ comentarios = st.text_area(
     placeholder="Digite observações, sugestões ou avaliações do projeto..."
 )
 
-avaliacao = st.slider(
-    "Avaliação Geral",
-    min_value=1,
-    max_value=10,
-    value=10
+col1, col2 = st.columns(2)
+
+with col1:
+    avaliacao = st.slider(
+        "Avaliação Geral",
+        1,
+        10,
+        10
+    )
+
+with col2:
+    st.metric(
+        "Nota",
+        f"{avaliacao}/10"
+    )
 )
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # EXPORTAÇÃO
@@ -374,7 +400,7 @@ st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application
 
 st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip")
 
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # RODAPÉ
