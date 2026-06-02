@@ -3,7 +3,6 @@ import streamlit as st
 from pathlib import Path
 import io
 import zipfile
-import base64
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
@@ -30,97 +29,97 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================================================
-# FUNDO DA APLICAÇÃO
-# ==================================================
-
-def imagem_base64(caminho):
-    arquivo = Path(caminho)
-
-    if not arquivo.exists():
-        return None
-
-    with open(arquivo, "rb") as img:
-        return base64.b64encode(img.read()).decode()
-
-fundo = imagem_base64(FUNDO_CAPA)
-
-if fundo:
-    st.markdown(f"""
-    <style>
-
-    .stApp {{
-        background-image: url("data:image/jpeg;base64,{fundo}");
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }}
-
-    .main .block-container {{
-        background: rgba(255,255,255,0.90);
-        border-radius: 20px;
-        padding: 2rem;
-    }}
-
-    </style>
-    """, unsafe_allow_html=True)
 
 # ==================================================
 # 🎨 CSS COM ANIMAÇÕES SUAVES
 # ==================================================
 
-if fundo:
+st.markdown("""
+<link rel="stylesheet"
+href="https://fonts.cdnfonts.com/css/armonioso">
+
+<style>
+
+.block-container{
+    max-width:1400px;
+    padding-top:0rem;
+    padding-bottom:3rem;
+}
+
+.title{
+    font-family:'Armonioso', cursive;
+    font-size:72px;
+    font-weight:900;
+    color:#4B1E2F;
+}
+
+.subtitle{
+    font-size:20px;
+    color:#666;
+}
+
+.secao{
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+img{
+    border-radius:18px;
+    transition:all .3s ease;
+}
+
+img:hover{
+    transform:scale(1.02);
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ==================================================
+# CAPA
+# ==================================================
+
+if Path(FUNDO_CAPA).exists():
+    st.image(FUNDO_CAPA, use_container_width=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+col1, col2 = st.columns([1,4])
+
+with col1:
+
+    if Path("logo_01.png").exists():
+        st.image("logo_01.png", use_container_width=True)
+
+with col2:
+
     st.markdown(
-        f"""
-        <style>
-
-        .stApp {{
-            background-image: url("data:image/jpeg;base64,{fundo}") !important;
-            background-size: cover !important;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
-            background-attachment: fixed !important;
-        }}
-
-        [data-testid="stHeader"] {{
-            background: transparent !important;
-        }}
-
-        .main .block-container {{
-            background-color: rgba(255,255,255,0.88);
-            padding: 2rem;
-            border-radius: 24px;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }}
-
-        </style>
-        """,
+        "<div class='title'>AÇAÍ VIDA</div>",
         unsafe_allow_html=True
     )
 
-# ==================================================
-# CAPA (LOGO + NOME ESQUERDA)
-# ==================================================
+    st.markdown(
+        "<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>",
+        unsafe_allow_html=True
+    )
 
-logo = Path("logo_01.png")
+    st.markdown("""
+**Cliente:** Açaí Vida
 
-col1, col2 = st.columns([1,5])
+**Ano:** 2026
 
-with col1:
-    if logo.exists():
-        st.image(str(logo), width=120)
+**Projeto de Extensão:** Brandbook
+""")
 
-with col2:
-    st.markdown("<div class='title'>AÇAÍ VIDA</div>", unsafe_allow_html=True)
-    st.markdown("<div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>", unsafe_allow_html=True)
-st.divider()
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # IDENTIDADE VISUAL
 # ==================================================
 
+if Path(FUNDO_IDENTIDADE).exists():
+    st.image(FUNDO_IDENTIDADE, use_container_width=True)
+    
 st.header("01 • Identidade Visual")
 
 col1, col2 = st.columns(2)
@@ -139,6 +138,9 @@ st.divider()
 # CONCEITO
 # ==================================================
 
+if Path(FUNDO_CONCEITO).exists():
+    st.image(FUNDO_CONCEITO, use_container_width=True)
+    
 st.header("02 • Conceito da Marca")
 
 st.write("""
@@ -151,6 +153,9 @@ st.divider()
 # TIPOGRAFIA
 # ==================================================
 
+if Path(FUNDO_TIPOGRAFIA).exists():
+    st.image(FUNDO_TIPOGRAFIA, use_container_width=True)
+    
 st.header("03 • Tipografia")
 
 col1, col2, col3 = st.columns(3)
@@ -176,6 +181,9 @@ st.divider()
 # PALETA DE CORES (LOGO AO LADO)
 # ==================================================
 
+if Path(FUNDO_PALETA).exists():
+    st.image(FUNDO_PALETA, use_container_width=True)
+    
 st.header("04 • Paleta de Cores")
 
 col_logo, col_cores = st.columns([1,3])
@@ -220,6 +228,9 @@ st.divider()
 # APLICAÇÃO
 # ==================================================
 
+if Path(FUNDO_APLICACOES).exists():
+    st.image(FUNDO_APLICACOES, use_container_width=True)
+    
 st.header("05 • Aplicação da Marca")
 
 col1, col2 = st.columns(2)
@@ -240,6 +251,9 @@ st.divider()
 # MOCKUPS
 # ==================================================
 
+if Path(FUNDO_MOCKUPS).exists():
+    st.image(FUNDO_MOCKUPS, use_container_width=True)
+    
 st.header("06 • Mockups")
 
 col1, col2, col3 = st.columns(3)
@@ -285,27 +299,36 @@ st.header("08 • Exportação")
 def gerar_pdf():
 
     buffer = io.BytesIO()
-    pdf = canvas.Canvas(buffer, pagesize=letter)
 
-    pdf.setFont("Helvetica-Bold", 26)
-    pdf.drawString(180, 750, "AÇAÍ VIDA")
+    pdf = canvas.Canvas(
+        buffer,
+        pagesize=letter
+    )
+
+    pdf.setTitle("Brandbook Açaí Vida")
+
+    pdf.setFont("Helvetica-Bold", 24)
+    pdf.drawString(160, 760, "AÇAÍ VIDA")
 
     pdf.setFont("Helvetica", 14)
-    pdf.drawString(160, 730, "Brandbook Acadêmico")
+    pdf.drawString(150, 735, "Brandbook Acadêmico")
 
     if Path("logo_01.png").exists():
+
         pdf.drawImage(
             "logo_01.png",
-            240,
+            220,
             520,
-            width=120,
-            height=120
+            width=160,
+            height=160,
+            preserveAspectRatio=True
         )
 
     pdf.showPage()
     pdf.save()
 
     buffer.seek(0)
+
     return buffer
     
 def gerar_zip():
@@ -325,7 +348,8 @@ def gerar_zip():
             "banner_01.png",
             "fundo_01.png",
             "fundo_02.png",
-            "fundo_03.png",
+            "fundo_03.png"
+            "fundo_04.png",
             "fundo_05.png",
             "gelato.png",
             "insta_01.png",
