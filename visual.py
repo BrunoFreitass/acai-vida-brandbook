@@ -335,26 +335,26 @@ def gerar_zip():
 
     with zipfile.ZipFile(buffer, "w") as z:
 
-    arquivos = [
-    "Logos_01.png",
-    "acai_01.png",
-    "acai_02.png",
-    "banner_01.png",
-    "fundo_01.png",
-    "fundo_02.png",
-    "fundo_03.jpg",
-    "fundo_05.png",
-    "gelato.png",
-    "insta_01.png",
-    "logo_01.png",
-    "mirtilo.png",
-    "montserrat.png",
-    "out_01.png",
-    "poppins.png",
-    "sorvete_01.png",
-    "sorvete_02.png",
-    "uniforme_01.png",
-]
+        arquivos = [
+            "Logos_01.png",
+            "acai_01.png",
+            "acai_02.png",
+            "banner_01.png",
+            "fundo_01.png",
+            "fundo_02.png",
+            "fundo_03.jpg",
+            "fundo_05.png",
+            "gelato.png",
+            "insta_01.png",
+            "logo_01.png",
+            "mirtilo.png",
+            "montserrat.png",
+            "out_01.png",
+            "poppins.png",
+            "sorvete_01.png",
+            "sorvete_02.png",
+            "uniforme_01.png",
+        ]
 
         for f in arquivos:
             if Path(f).exists():
