@@ -12,7 +12,7 @@ from reportlab.lib.pagesizes import letter
 
 st.set_page_config(
     page_title="Açaí Vida | Brandbook",
-    page_icon="editaveis/logo.png",
+    page_icon="logo_01.png",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -90,7 +90,7 @@ img:hover {
 # CAPA (LOGO + NOME ESQUERDA)
 # ==================================================
 
-logo = Path("editaveis/logo.png")
+logo = Path("logo_01.png")
 
 col1, col2 = st.columns([1,5])
 
@@ -114,11 +114,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("Logo Principal")
-    st.image("editaveis/logo.png", width=250)
+    st.image("logo_01.png", width=250)
 
 with col2:
     st.subheader("Logos diversas")
-    st.image("editaveis/logos.png", width=500)
+    st.image("Logos_01.png", width=500)
 
 st.divider()
 
@@ -168,7 +168,7 @@ st.header("04 • Paleta de Cores")
 col_logo, col_cores = st.columns([1,3])
 
 with col_logo:
-    st.image("editaveis/logo.png", width=120)
+    st.image("logo_01.png", width=120)
 
 with col_cores:
 
@@ -213,11 +213,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("🥤 Copo Comercial")
-    st.image("editaveis/açai.01.png")
+    st.image("acai_01.png")
 
 with col2:
     st.subheader("🍨 Taça Premium")
-    st.image("editaveis/açai.02.png")
+    st.image("acai_02.png")
 
 st.divider()
 
@@ -230,13 +230,13 @@ st.header("06 • Mockups")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.image("editaveis/acai.03.png", caption="Copo")
+    st.image("out_01.png", caption="Outdoor")
 
 with col2:
-    st.image("editaveis/uniforme.png", caption="Uniforme")
+    st.image("uniforme_01.png", caption="Uniforme")
 
 with col3:
-    st.image("editaveis/insta.jpg", caption="Instagram")
+    st.image("insta_01.jpg", caption="Instagram")
 
 st.divider()
 
@@ -258,7 +258,7 @@ def gerar_pdf():
     pdf.drawString(160, 730, "Brandbook Acadêmico")
 
     if Path("editaveis/logo.png").exists():
-        pdf.drawImage("editaveis/logo.png", 240, 520, width=120, height=120)
+        pdf.drawImage("editaveis/logo_01.png", 240, 520, width=120, height=120)
 
     pdf.showPage()
     pdf.save()
