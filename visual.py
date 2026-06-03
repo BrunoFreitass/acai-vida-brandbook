@@ -357,7 +357,7 @@ def gerar_pdf():
     pdf.setTitle("Brandbook Açaí Vida")
     pdf.setFont("Helvetica-Bold", 24)
     if Path("logo_nome_01.png").exists():
-    pdf.drawImage("logo_final_01", 80, 650, width=450, preserveAspectRatio=True)
+    pdf.drawImage("logo_final_01.png", 80, 650, width=450, preserveAspectRatio=True)
     pdf.setFont("Helvetica", 14)
     pdf.drawString(150, 735, "Brandbook Acadêmico")
     if Path("logo_01.png").exists():
