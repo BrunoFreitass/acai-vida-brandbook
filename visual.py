@@ -87,66 +87,120 @@ st.markdown("""
 # ==================================================
 # 01 • IDENTIDADE VISUAL
 # ==================================================
-banner(FUNDO_IDENTIDADE)
 
-st.markdown("<div class='conteudo-texto'><h2>01 • Identidade Visual</h2></div>", unsafe_allow_html=True)
+st.markdown("---")
+
+st.markdown("""
+<div class='conteudo-texto'>
+<h2>01 • Identidade Visual</h2>
+<p>
+A identidade visual da Açaí Vida foi desenvolvida para transmitir energia,
+naturalidade e conexão com a cultura amazônica.
+</p>
+</div>
+""", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
+
 with col1:
     st.subheader("Logo Principal")
+
     if Path("logo_01.png").exists():
         st.image("logo_01.png", use_container_width=True)
 
 with col2:
-    st.subheader("Logos Diversas")
+    st.subheader("Versões da Marca")
+
     if Path("Logos_01.png").exists():
         st.image("Logos_01.png", use_container_width=True)
 
 # ==================================================
 # 02 • CONCEITO DA MARCA
 # ==================================================
-banner(FUNDO_CONCEITO)
+
+st.markdown("---")
 
 st.markdown("""
 <div class='conteudo-texto'>
-    <h2>02 • Conceito da Marca</h2>
-    <p>A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
-    O conceito foi desenhado para evocar a vibração e o frescor dos ingredientes, com uma linguagem urbana e autêntica.</p>
+<h2>02 • Conceito da Marca</h2>
+
+<p>
+A Açaí Vida representa energia, bem-estar e vitalidade.
+Sua identidade busca unir elementos da cultura amazônica
+com uma linguagem contemporânea, criando uma marca jovem,
+forte e memorável.
+</p>
+
 </div>
 """, unsafe_allow_html=True)
 
 # ==================================================
 # 03 • TIPOGRAFIA
 # ==================================================
-banner(FUNDO_TIPOGRAFIA)
 
-st.markdown("<div class='conteudo-texto'><h2>03 • Tipografia</h2></div>", unsafe_allow_html=True)
+st.markdown("---")
+
+st.markdown("""
+<div class='conteudo-texto'>
+<h2>03 • Tipografia</h2>
+</div>
+""", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
+
 with col1:
     st.subheader("Gelato Luxe")
+
     if Path("gelato.png").exists():
         st.image("gelato.png", use_container_width=True)
-    st.caption("Fonte principal da marca")
+
+    st.caption("Tipografia principal da marca")
 
 with col2:
     st.subheader("Poppins Bold")
+
     if Path("poppins.png").exists():
         st.image("poppins.png", use_container_width=True)
-    st.caption("Fonte secundária")
+
+    st.caption("Tipografia complementar")
 
 with col3:
     st.subheader("Montserrat Regular")
+
     if Path("montserrat.png").exists():
         st.image("montserrat.png", use_container_width=True)
-    st.caption("Fonte de apoio")
 
+    st.caption("Tipografia de apoio")
+    
 # ==================================================
 # 04 • PALETA DE CORES
 # ==================================================
-banner(FUNDO_PALETA)
 
-st.markdown("<div class='conteudo-texto'><h2>04 • Paleta de Cores</h2></div>", unsafe_allow_html=True)
+st.markdown("---")
+
+st.markdown("""
+<div class='conteudo-texto'>
+<h2>04 • Paleta de Cores</h2>
+</div>
+""", unsafe_allow_html=True)
+
+# Logos da marca
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("Logo Principal")
+
+    if Path("logo_01.png").exists():
+        st.image("logo_01.png", use_container_width=True)
+
+with col2:
+    st.subheader("Logos Alternativas")
+
+    if Path("Logos_01.png").exists():
+        st.image("Logos_01.png", use_container_width=True)
+
+# Paleta
 
 cores = [
     ("Roxo Açaí", "#5B2A8C"),
@@ -157,19 +211,32 @@ cores = [
 ]
 
 cols_cores = st.columns(5)
+
 for i, (nome, cor) in enumerate(cores):
     with cols_cores[i]:
-        text_color = "black" if cor.upper() == "#FDFBFE" else "white"
-        st.markdown(f"""
-        <div style="background:{cor}; padding:30px 15px; border-radius:12px; text-align:center; font-weight:bold; color:{text_color}; margin-bottom: 20px;">
-            {nome}<br>{cor}
-        </div>
-        """, unsafe_allow_html=True)
 
+        text_color = "black" if cor.upper() == "#FDFBFE" else "white"
+
+        st.markdown(
+            f"""
+            <div style="
+                background:{cor};
+                padding:35px 10px;
+                border-radius:12px;
+                text-align:center;
+                font-weight:bold;
+                color:{text_color};
+                margin-bottom:20px;
+            ">
+                {nome}<br>{cor}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+st.markdown("---")
 # ==================================================
 # 05 • APLICAÇÃO DA MARCA
 # ==================================================
-banner(FUNDO_APLICACOES)
 
 st.markdown("<div class='conteudo-texto'><h2>05 • Aplicação da Marca</h2></div>", unsafe_allow_html=True)
 
@@ -188,10 +255,10 @@ with col2:
     if Path("banner_01.png").exists():
         st.image("banner_01.png", use_container_width=True)
 
+st.markdown("---")
 # ==================================================
 # 06 • MOCKUPS
 # ==================================================
-banner(FUNDO_MOCKUPS)
 
 st.markdown("<div class='conteudo-texto'><h2>06 • Mockups</h2></div>", unsafe_allow_html=True)
 
