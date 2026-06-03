@@ -41,9 +41,9 @@ st.markdown(css_behance, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-if Path("logo_nome_01.png").exists():
+if Path("logo_final_01.png").exists():
     st.image(
-        "logo_nome_01.png",
+        "logo_final_01.png",
         use_container_width=True
     )
 
