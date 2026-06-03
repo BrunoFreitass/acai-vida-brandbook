@@ -17,37 +17,6 @@ st.set_page_config(
 )
 
 # ==================================================
-# DEFINIÇÃO DE FUNÇÕES
-# ==================================================
-def banner(imagem):
-    if Path(imagem).exists():
-        with open(imagem, "rb") as f:
-            data = base64.b64encode(f.read()).decode("utf-8")
-        
-        ext = Path(imagem).suffix.replace(".", "").lower()
-        mime = f"image/{ext}" if ext in ["png", "jpg", "jpeg"] else "image/png"
-        
-        st.markdown(
-            f"""
-            <div style="display: flex; width: 100%; justify-content: center; overflow: hidden;">
-                <img src="data:{mime};base64,{data}" style="width: 100%; height: auto; object-fit: cover; margin-bottom: 0px; margin-top: 0px; border-radius: 0px;">
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-# ==================================================
-# IMAGENS DE FUNDO
-# ==================================================
-FUNDO_CAPA = "fundo_01.png"
-FUNDO_IDENTIDADE = "fundo_02.png"
-FUNDO_CONCEITO = "fundo_03.png"
-FUNDO_TIPOGRAFIA = "fundo_04.png"
-FUNDO_PALETA = "fundo_04.png"
-FUNDO_APLICACOES = "fundo_05.png"
-FUNDO_MOCKUPS = "fundo_01.png"
-
-# ==================================================
 # 🎨 CSS CUSTOMIZADO (COMPACTADO PARA EVITAR QUEBRAS)
 # ==================================================
 st.markdown('<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/armonioso">', unsafe_allow_html=True)
@@ -58,7 +27,7 @@ css_behance = (
     "[data-testid='stImage'] img {width: 100% !important; max-width: 100% !important; height: auto !important; margin-bottom: 0px !important; border-radius: 0px !important;}"
     "[data-testid='stHorizontalBlock'] {gap: 0rem !important;}"
     ".conteudo-texto {padding: 60px 80px; background-color: transparent;}"
-    "..title {font-family: 'Armonioso', cursive; font-size: 72px; color: white;text-shadow: 0px 2px 12px rgba(0,0,0,0.35);}"
+    ".title {font-family: 'Armonioso', cursive; font-size: 72px; color: white;text-shadow: 0px 2px 12px rgba(0,0,0,0.35);}"
     ".subtitle {font-size: 22px; color: #666;}"
     ".secao-interativa {background-color: #f7f7f7; padding: 60px 80px; border-radius: 16px; margin-bottom: 20px; color: #333333;}"
     "</style>"
@@ -304,39 +273,28 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2, col3, col4 = st.columns(4)
+col1, col2 = st.columns(2)
 
 with col1:
     if Path("out_01.png").exists():
-        st.image(
-            "out_01.png",
-            caption="Outdoor",
-            use_container_width=True
-        )
+        st.image("out_01.png", caption="Outdoor", use_container_width=True)
 
 with col2:
     if Path("uniforme_01.png").exists():
-        st.image(
-            "uniforme_01.png",
-            caption="Uniforme",
-            use_container_width=True
-        )
+        st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)
+
+# Segunda linha
+
+col3, col4 = st.columns(2)
 
 with col3:
     if Path("insta_01.png").exists():
-        st.image(
-            "insta_01.png",
-            caption="Instagram",
-            use_container_width=True
-        )
+        st.image("insta_01.png", caption="Instagram", use_container_width=True)
 
 with col4:
     if Path("cardapio_01.png").exists():
-        st.image(
-            "cardapio_01.png",
-            caption="Cardápio",
-            use_container_width=True
-        )
+        st.image("cardapio_01.png", caption="Cardápio", use_container_width=True)
+        
 # ==================================================
 # 07 • COMENTÁRIOS E AVALIAÇÕES
 # ==================================================
@@ -398,7 +356,8 @@ def gerar_pdf():
     pdf = canvas.Canvas(buffer, pagesize=letter)
     pdf.setTitle("Brandbook Açaí Vida")
     pdf.setFont("Helvetica-Bold", 24)
-    pdf.drawString(160, 760, "AÇAÍ VIDA")
+    if Path("logo_nome_01.png").exists():
+    pdf.drawImage("logo_final_01", 80, 650, width=450, preserveAspectRatio=True)
     pdf.setFont("Helvetica", 14)
     pdf.drawString(150, 735, "Brandbook Acadêmico")
     if Path("logo_01.png").exists():
@@ -417,10 +376,10 @@ def gerar_zip():
             "fundo_01.png", "fundo_02.png", "fundo_03.png", "fundo_04.png",
             "fundo_05.png", "gelato.png", "insta_01.png", "logo_01.png",
             "mirtilo.png", "montserrat.png", "out_01.png", "poppins.png",
-            "sorvete_01.png", "sorvete_02.png", "uniforme_01.png", "acai_fundo_amarelo_01",
-            "acai_fundo_amarelo_02", "acai_fundo_amarelo_03", "acai_fundo_preto_01",
-            "acai_fundo_roxo_01", "acais_fundo_amarelo_01", "soverte_verde_01",
-            "sovertes_fundo_amarelo_01"
+            "sorvete_01.png", "sorvete_02.png", "uniforme_01.png", "acai_fundo_amarelo_01.png",
+            "acai_fundo_amarelo_02.png", "acai_fundo_amarelo_03.png", "acai_fundo_preto_01.png",
+            "acai_fundo_roxo_01.png", "acais_fundo_amarelo_01.png", "soverte_verde_01.png",
+            "sovertes_fundo_amarelo_01.png"
         ]
         for f in arquivos:
             if Path(f).exists():
