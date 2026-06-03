@@ -78,7 +78,7 @@ col1, col2 = st.columns([1,4])
 with col1:
 
     if Path("logo_01.png").exists():
-        st.image("logo_final_01.png", use_container_width=True)
+        st.image("logo_02.png", use_container_width=True)
 
 with col2:
 
