@@ -101,7 +101,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Logo Principal")
 
-    if Path("logo_01.png").exists():
+ if Path("logo_01.png").exists():
         st.image("logo_01.png", use_container_width=True)
 
 with col2:
