@@ -47,18 +47,6 @@ if Path("logo_final_01.png").exists():
         use_container_width=True
     )
 
-st.markdown("<br>", unsafe_allow_html=True)
-
-col1, col2, col3 = st.columns([1,2,1])
-
-with col2:
-
-    if Path("logo_02.png").exists():
-        st.image(
-            "logo_02.png",
-            width=1400
-        )
-
 st.markdown("""
 
 <div style="
@@ -101,7 +89,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Logo Principal")
 
- if Path("logo_01.png").exists():
+    if Path("logo_01.png").exists():
         st.image("logo_01.png", use_container_width=True)
 
 with col2:
