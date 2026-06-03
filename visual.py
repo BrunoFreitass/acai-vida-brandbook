@@ -291,8 +291,8 @@ with col2:
         st.image("sorvete_01.png", use_container_width=True)
     if Path("sorvete_02.png").exists():
         st.image("sorvete_02.png", use_container_width=True)
-    if Path("sorvete_fundo_amarelo_01.png").exists():
-        st.image("sorvetes_fundo_amarelo_01.png", use_container_width=True)
+    if Path("sorvertes_fundo_amarelo_01.png").exists():
+        st.image("sovertes_fundo_amarelo_01.png", use_container_width=True)
 
 st.markdown("---")
 # ==================================================
