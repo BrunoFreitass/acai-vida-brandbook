@@ -69,7 +69,6 @@ st.markdown(css_behance, unsafe_allow_html=True)
 # ==================================================
 # CAPA
 # ==================================================
-banner(FUNDO_CAPA)
 
 st.markdown("""
 <div class='conteudo-texto'>
