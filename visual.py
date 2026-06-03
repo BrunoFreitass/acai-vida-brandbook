@@ -301,7 +301,7 @@ st.markdown("---")
 
 st.markdown("<div class='conteudo-texto'><h2>06 • Mockups</h2></div>", unsafe_allow_html=True)
 
-col1, col2, col3, col14 = st.columns(4)
+col1, col2, col3, co14 = st.columns(4)
 with col1:
     if Path("out_01.png").exists():
         st.image("out_01.png", caption="Outdoor", use_container_width=True)
