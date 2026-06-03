@@ -417,7 +417,10 @@ def gerar_zip():
             "fundo_01.png", "fundo_02.png", "fundo_03.png", "fundo_04.png",
             "fundo_05.png", "gelato.png", "insta_01.png", "logo_01.png",
             "mirtilo.png", "montserrat.png", "out_01.png", "poppins.png",
-            "sorvete_01.png", "sorvete_02.png", "uniforme_01.png",
+            "sorvete_01.png", "sorvete_02.png", "uniforme_01.png", "acai_fundo_amarelo_01",
+            "acai_fundo_amarelo_02", "acai_fundo_amarelo_03", "acai_fundo_preto_01",
+            "acai_fundo_roxo_01", "acais_fundo_amarelo_01", "soverte_verde_01",
+            "sovertes_fundo_amarelo_01"
         ]
         for f in arquivos:
             if Path(f).exists():
