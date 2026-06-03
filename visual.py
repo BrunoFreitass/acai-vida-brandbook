@@ -48,56 +48,23 @@ FUNDO_APLICACOES = "fundo_05.png"
 FUNDO_MOCKUPS = "fundo_01.png"
 
 # ==================================================
-# 🎨 CSS CUSTOMIZADO (SEM COMENTÁRIOS PARA EVITAR QUEBRAS)
+# 🎨 CSS CUSTOMIZADO (COMPACTADO PARA EVITAR QUEBRAS)
 # ==================================================
-st.markdown("""
-<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/armonioso">
-<style>
-.main .block-container {
-    max-width: 100% !important;
-    padding-top: 0rem !important;
-    padding-bottom: 0rem !important;
-    padding-left: 0rem !important;
-    padding-right: 0rem !important;
-}
+st.markdown('<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/armonioso">', unsafe_allow_html=True)
 
-[data-testid="stImage"] img {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    margin-bottom: 0px !important;
-    border-radius: 0px !important;
-}
+css_behance = (
+    "<style>"
+    ".main .block-container {max-width: 100% !important; padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; padding-right: 0rem !important;}"
+    "[data-testid='stImage'] img {width: 100% !important; max-width: 100% !important; height: auto !important; margin-bottom: 0px !important; border-radius: 0px !important;}"
+    "[data-testid='stHorizontalBlock'] {gap: 0rem !important;}"
+    ".conteudo-texto {padding: 60px 80px; background-color: transparent;}"
+    ".title {font-family: 'Armonioso', cursive; font-size: 72px; color: #4B1E2F;}"
+    ".subtitle {font-size: 22px; color: #666;}"
+    ".secao-interativa {background-color: #f7f7f7; padding: 60px 80px; border-radius: 16px; margin-bottom: 20px; color: #333333;}"
+    "</style>"
+)
 
-[data-testid="stHorizontalBlock"] {
-    gap: 0rem !important;
-}
-
-.conteudo-texto {
-    padding: 60px 80px;
-    background-color: transparent;
-}
-
-.title {
-    font-family: 'Armonioso', cursive;
-    font-size: 72px;
-    color: #4B1E2F;
-}
-
-.subtitle {
-    font-size: 22px;
-    color: #666;
-}
-
-.secao-interativa {
-    background-color: #f7f7f7;
-    padding: 60px 80px;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    color: #333333;
-}
-</style>
-""", unsafe_allow_html=True)
+st.markdown(css_behance, unsafe_allow_html=True)
 
 # ==================================================
 # CAPA
