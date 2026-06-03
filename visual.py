@@ -87,7 +87,7 @@ with col2:
     if Path("logo_02.png").exists():
         st.image(
             "logo_02.png",
-            width=250
+            width=1400
         )
 
 st.markdown("""
