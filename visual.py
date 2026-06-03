@@ -91,23 +91,6 @@ img {
 </style>
 """, unsafe_allow_html=True)
 
-# Função para renderizar os banners de fundo sem quebras
-def banner(imagem):
-    if Path(imagem).exists():
-        with open(imagem, "rb") as f:
-            data = base64.b64encode(f.read()).decode("utf-8")
-        ext = Path(imagem).suffix.replace(".", "").lower()
-        mime = f"image/{ext}" if ext in ["png", "jpg", "jpeg"] else "image/png"
-        
-        st.markdown(
-            f'<img src="data:{mime};base64,{data}" style="width:100%; max-height:400px; object-fit:cover;">',
-            unsafe_allow_html=True
-        )
-
-# Inicializa o histórico de comentários na sessão para não sumir ao interagir
-if "historico_comentarios" not in st.session_state:
-    st.session_state.historico_comentarios = []
-
 # ==================================================
 # CAPA (Estilo Behance - Imagem Completa)
 # ==================================================
