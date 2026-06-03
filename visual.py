@@ -299,25 +299,44 @@ st.markdown("---")
 # 06 • MOCKUPS
 # ==================================================
 
-st.markdown("<div class='conteudo-texto'><h2>06 • Mockups</h2></div>", unsafe_allow_html=True)
+st.markdown(
+    "<div class='conteudo-texto'><h2>06 • Mockups</h2></div>",
+    unsafe_allow_html=True
+)
 
-col1, col2, col3, co14 = st.columns(4)
+col1, col2, col3, col4 = st.columns(4)
+
 with col1:
     if Path("out_01.png").exists():
-        st.image("out_01.png", caption="Outdoor", use_container_width=True)
+        st.image(
+            "out_01.png",
+            caption="Outdoor",
+            use_container_width=True
+        )
 
 with col2:
     if Path("uniforme_01.png").exists():
-        st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)
+        st.image(
+            "uniforme_01.png",
+            caption="Uniforme",
+            use_container_width=True
+        )
 
 with col3:
     if Path("insta_01.png").exists():
-        st.image("insta_01.png", caption="Instagram", use_container_width=True)
-        
+        st.image(
+            "insta_01.png",
+            caption="Instagram",
+            use_container_width=True
+        )
+
 with col4:
     if Path("cardapio_01.png").exists():
-        st.image("cardapio_01.png", caption="Cardapio", use_container_width=True)
-
+        st.image(
+            "cardapio_01.png",
+            caption="Cardápio",
+            use_container_width=True
+        )
 # ==================================================
 # 07 • COMENTÁRIOS E AVALIAÇÕES
 # ==================================================
