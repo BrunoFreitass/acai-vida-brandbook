@@ -72,35 +72,44 @@ st.markdown(css_behance, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([1,6])
+if Path("logo_nome_01.png").exists():
+    st.image(
+        "logo_nome_01.png",
+        use_container_width=True
+    )
 
-with col1:
+st.markdown("<br>", unsafe_allow_html=True)
 
-    if Path("logo_02.png").exists():
-        st.image("logo_02.png", use_container_width=True)
+col1, col2, col3 = st.columns([1,2,1])
 
 with col2:
 
-    st.markdown("<div class='conteudo-texto'>", unsafe_allow_html=True)
+    if Path("logo_02.png").exists():
+        st.image(
+            "logo_02.png",
+            width=250
+        )
 
-    if Path("logo_nome_01.png").exists():
-        st.image("logo_02.png", use_container_width=True)
+st.markdown("""
 
-    st.markdown("""
-    <div class='subtitle' style="color:white; margin-top:10px;">
-        Brandbook Acadêmico • Identidade Visual
-    </div>
+<div style="
+text-align:center;
+color:white;
+font-size:20px;
+line-height:1.8;
+">
 
-    <br>
+<strong>Brandbook Acadêmico • Identidade Visual</strong>
 
-    <p style="color:white; font-size:18px;">
-        <b>Cliente:</b> Açaí Vida<br>
-        <b>Ano:</b> 2026<br>
-        <b>Projeto de Extensão:</b> Brandbook
-    </p>
-    """, unsafe_allow_html=True)
+<br><br>
 
-    st.markdown("</div>", unsafe_allow_html=True)
+Cliente: Açaí Vida<br>
+Ano: 2026<br>
+Projeto de Extensão: Brandbook
+
+</div>
+
+""", unsafe_allow_html=True)
     
 # ==================================================
 # 01 • IDENTIDADE VISUAL
