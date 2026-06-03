@@ -352,19 +352,33 @@ st.markdown("<div class='conteudo-texto'><h2>08 • Exportação</h2></div>", un
 
 @st.cache_data
 def gerar_pdf():
+
     buffer = io.BytesIO()
+
     pdf = canvas.Canvas(buffer, pagesize=letter)
+
     pdf.setTitle("Brandbook Açaí Vida")
+
     pdf.setFont("Helvetica-Bold", 24)
-    if Path("logo_nome_01.png").exists():
-    pdf.drawImage("logo_final_01.png", 80, 650, width=450, preserveAspectRatio=True)
+    pdf.drawString(160, 760, "AÇAÍ VIDA")
+
     pdf.setFont("Helvetica", 14)
     pdf.drawString(150, 735, "Brandbook Acadêmico")
-    if Path("logo_01.png").exists():
-        pdf.drawImage("logo_01.png", 220, 520, width=160, height=160, preserveAspectRatio=True)
+
+    if Path("logo_final_01.png").exists():
+        pdf.drawImage(
+            "logo_final_01.png",
+            80,
+            650,
+            width=450,
+            preserveAspectRatio=True
+        )
+
     pdf.showPage()
     pdf.save()
+
     buffer.seek(0)
+
     return buffer
 
 @st.cache_data
