@@ -301,7 +301,7 @@ st.markdown("---")
 
 st.markdown("<div class='conteudo-texto'><h2>06 • Mockups</h2></div>", unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col14 = st.columns(4)
 with col1:
     if Path("out_01.png").exists():
         st.image("out_01.png", caption="Outdoor", use_container_width=True)
@@ -313,6 +313,10 @@ with col2:
 with col3:
     if Path("insta_01.png").exists():
         st.image("insta_01.png", caption="Instagram", use_container_width=True)
+        
+with col4:
+    if Path("cardapio_01.png").exists():
+        st.image("cardapio_01.png", caption="Cardapio", use_container_width=True)
 
 # ==================================================
 # 07 • COMENTÁRIOS E AVALIAÇÕES
