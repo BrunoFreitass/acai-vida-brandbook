@@ -7,8 +7,9 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
 # ==================================================
-# CONFIGURAÇÃO DA PÁGINA (Deve ser o primeiro comando)
+# CONFIGURAÇÃO
 # ==================================================
+
 st.set_page_config(
     page_title="Açaí Vida | Brandbook",
     page_icon="logo_01.png",
@@ -17,8 +18,33 @@ st.set_page_config(
 )
 
 # ==================================================
+# DEFINIÇÃO DE FUNÇÕES (Mover para cima)
+# ==================================================
+
+def banner(imagem):
+    """Renderiza uma imagem de banner cobrindo toda a largura."""
+    if Path(imagem).exists():
+        with open(imagem, "rb") as f:
+            data = base64.b64encode(f.read()).decode("utf-8")
+        
+        ext = Path(imagem).suffix.replace(".", "").lower()
+        mime = f"image/{ext}" if ext in ["png", "jpg", "jpeg"] else "image/png"
+        
+        # Converte em HTML controlado impedindo quebra de páginas ou grandes lacunas
+        # Usando CSS flex e object-fit para cobrir a área e conectar
+        st.markdown(
+            f"""
+            <div style="display: flex; width: 100%; justify-content: center; overflow: hidden;">
+                <img src="data:{mime};base64,{data}" style="width: 100%; height: auto; object-fit: cover; margin-bottom: 0px; margin-top: 0px;">
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+# ==================================================
 # IMAGENS DE FUNDO
 # ==================================================
+
 FUNDO_CAPA = "fundo_01.png"
 FUNDO_IDENTIDADE = "fundo_02.png"
 FUNDO_CONCEITO = "fundo_03.png"
@@ -28,13 +54,14 @@ FUNDO_APLICACOES = "fundo_05.png"
 FUNDO_MOCKUPS = "fundo_01.png"
 
 # ==================================================
-# 🎨 CSS CUSTOMIZADO (ESTILO BEHANCE - SEM EMENDAS)
+# 🎨 CSS CUSTOMIZADO
 # ==================================================
+
 st.markdown("""
 <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/armonioso">
 <style>
-/* Remove as margens laterais e superiores do app */
-.block-container {
+/* Remove espaçamentos e margens padrão do Streamlit para conectar blocos */
+.main .block-container {
     max-width: 100% !important;
     padding-top: 0rem !important;
     padding-bottom: 0rem !important;
@@ -42,125 +69,142 @@ st.markdown("""
     padding-right: 0rem !important;
 }
 
-/* Zera o espaço vertical padrão entre os blocos do Streamlit */
-[data-testid="stVerticalBlock"] > div {
-    padding-bottom: 0rem !important;
-    margin-bottom: 0rem !important;
+/* Garante que imagens ocupem toda a largura do container e se conectem */
+[data-testid="stImage"] img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin-bottom: 0px !important;
+    border-radius: 0px !important;
 }
 
-/* Remove o espaçamento das colunas para conectar imagens horizontais */
+/* Remove lacunas entre elementos horizontais (colunas) */
 [data-testid="stHorizontalBlock"] {
     gap: 0rem !important;
 }
 
-/* Força as imagens a preencherem o bloco sem cantos arredondados ou lacunas */
-img {
-    width: 100% !important;
-    border-radius: 0px !important;
-    margin: 0px !important;
-    padding: 0px !important;
-    display: block !important;
-}
-
-/* Containers de conteúdo textual (adiciona margem interna apenas onde há texto) */
+/* Estilos de texto */
 .conteudo-texto {
-    padding: 40px 80px;
-    background-color: #FDFBFE;
-    color: #333333;
+    padding: 60px 80px;
+    background-color: transparent; /* Permite que o fundo do container se estenda */
 }
 
 .title {
     font-family: 'Armonioso', cursive;
     font-size: 72px;
     color: #4B1E2F;
-    margin-bottom: 10px;
 }
 
 .subtitle {
     font-size: 22px;
     color: #666;
-    margin-bottom: 20px;
 }
 
-/* Estilização da seção de comentários interativos */
+/* Estiliza o container para o feedback e comentários */
 .secao-interativa {
-    background-color: #2D0B48;
-    color: white;
+    background-color: #f7f7f7;
     padding: 60px 80px;
+    border-radius: 16px;
+    margin-bottom: 20px;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# CAPA (Estilo Behance - Imagem Completa)
+# CAPA
 # ==================================================
+
 banner(FUNDO_CAPA)
 
 st.markdown("""
-<div class="conteudo-texto">
-    <div class="title">AÇAÍ VIDA</div>
-    <div class="subtitle">Brandbook Acadêmico • Identidade Visual</div>
-    <p><b>Cliente:</b> Açaí Vida<br>
-    <b>Ano:</b> 2026<br>
-    <b>Projeto de Extensão:</b> Brandbook</p>
+<div class='conteudo-texto'>
+    <div class='title'>AÇAÍ VIDA</div>
+    <div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>
+    <p>
+        **Cliente:** Açaí Vida<br>
+        **Ano:** 2026<br>
+        **Projeto de Extensão:** Brandbook
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# 01 • IDENTIDADE VISUAL
+# IDENTIDADE VISUAL
 # ==================================================
+
 banner(FUNDO_IDENTIDADE)
 
-st.markdown('<div class="conteudo-texto"><h2>01 • Identidade Visual</h2></div>', unsafe_allow_html=True)
+st.header("01 • Identidade Visual")
 
 col1, col2 = st.columns(2)
+
 with col1:
+    st.subheader("Logo Principal")
     if Path("logo_01.png").exists():
         st.image("logo_01.png", use_container_width=True)
+
 with col2:
+    st.subheader("Logos diversas")
     if Path("Logos_01.png").exists():
         st.image("Logos_01.png", use_container_width=True)
 
+# Adiciona espaçamento controlado para as próximas seções
+st.markdown("<br><br>", unsafe_allow_html=True)
+
 # ==================================================
-# 02 • CONCEITO DA MARCA
+# CONCEITO
 # ==================================================
+
 banner(FUNDO_CONCEITO)
 
-st.markdown("""
-<div class="conteudo-texto">
-    <h2>02 • Conceito da Marca</h2>
-    <p>A Açaí Vida representa energia, cultura amazônica e identidade visual forte. 
-    O design foi planejado para transmitir o frescor do fruto combinado com a vibração urbana e tropical moderna.</p>
+st.header("02 • Conceito da Marca")
+
+st.write("""
+<div class='conteudo-texto'>
+    A Açaí Vida representa energia, cultura amazônica e identidade visual forte.
+    O conceito foi desenhado para evocar a vibração e o frescor dos ingredientes, com uma linguagem urbana e autêntica.
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown("<br><br>", unsafe_allow_html=True)
+
 # ==================================================
-# 03 • TIPOGRAFIA
+# TIPOGRAFIA
 # ==================================================
+
 banner(FUNDO_TIPOGRAFIA)
 
-st.markdown('<div class="conteudo-texto"><h2>03 • Tipografia</h2></div>', unsafe_allow_html=True)
+st.header("03 • Tipografia")
 
 col1, col2, col3 = st.columns(3)
+
 with col1:
+    st.subheader("Gelato Luxe")
     if Path("gelato.png").exists():
         st.image("gelato.png", use_container_width=True)
-    st.markdown("<div style='padding: 0 20px;'><p><b>Gelato Luxe</b><br>Fonte principal da marca</p></div>", unsafe_allow_html=True)
+    st.caption("Fonte principal da marca")
+
 with col2:
+    st.subheader("Poppins Bold")
     if Path("poppins.png").exists():
         st.image("poppins.png", use_container_width=True)
-    st.markdown("<div style='padding: 0 20px;'><p><b>Poppins Bold</b><br>Fonte secundária</p></div>", unsafe_allow_html=True)
+    st.caption("Fonte secundária")
+
 with col3:
+    st.subheader("Montserrat Regular")
     if Path("montserrat.png").exists():
         st.image("montserrat.png", use_container_width=True)
-    st.markdown("<div style='padding: 0 20px;'><p><b>Montserrat Regular</b><br>Fonte de apoio</p></div>", unsafe_allow_html=True)
+    st.caption("Fonte de apoio")
+
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
-# 04 • PALETA DE CORES
+# PALETA DE CORES
 # ==================================================
+
 banner(FUNDO_PALETA)
 
-st.markdown('<div class="conteudo-texto"><h2>04 • Paleta de Cores</h2></div>', unsafe_allow_html=True)
+st.header("04 • Paleta de Cores")
 
 cores = [
     ("Roxo Açaí", "#5B2A8C"),
@@ -170,116 +214,183 @@ cores = [
     ("Roxo Profundo", "#2D0B48"),
 ]
 
-# Grid de cores sem margens agressivas
-cols_cores = st.columns(5)
+# Grid de cores
+cols_cores = st.columns(3)
 for i, (nome, cor) in enumerate(cores):
-    with cols_cores[i]:
+    with cols_cores[i % 3]:
         text_color = "black" if cor.upper() == "#FDFBFE" else "white"
         st.markdown(f"""
-        <div style="background:{cor}; padding:40px 20px; text-align:center; font-weight:bold; color:{text_color};">
-            {nome}<br>{cor}
+        <div style="
+            background:{cor};
+            padding:22px;
+            border-radius:12px;
+            text-align:center;
+            font-weight:bold;
+            color:{text_color};
+            margin-bottom: 20px;
+        ">
+        {nome}<br>{cor}
         </div>
         """, unsafe_allow_html=True)
 
+st.markdown("<br><br>", unsafe_allow_html=True)
+
 # ==================================================
-# 05 • APLICAÇÃO DA MARCA
+# APLICAÇÃO
 # ==================================================
+
 banner(FUNDO_APLICACOES)
 
-st.markdown('<div class="conteudo-texto"><h2>05 • Aplicação da Marca</h2></div>', unsafe_allow_html=True)
+st.header("05 • Aplicação da Marca")
 
 col1, col2 = st.columns(2)
+
 with col1:
-    st.markdown("<div style='padding:20px;'><h3>🥤 Copo Comercial</h3></div>", unsafe_allow_html=True)
-    if Path("acai_01.png").exists(): st.image("acai_01.png", use_container_width=True)
-    if Path("acai_02.png").exists(): st.image("acai_02.png", use_container_width=True)
+    st.subheader("🥤 Copo Comercial")
+    if Path("acai_01.png").exists():
+        st.image("acai_01.png", use_container_width=True)
+    if Path("acai_02.png").exists():
+        st.image("acai_02.png", use_container_width=True)
+
 with col2:
-    st.markdown("<div style='padding:20px;'><h3>🍨 Taça Premium</h3></div>", unsafe_allow_html=True)
-    if Path("sorvete_02.png").exists(): st.image("sorvete_02.png", use_container_width=True)
-    if Path("banner_01.png").exists(): st.image("banner_01.png", use_container_width=True)
+    st.subheader("🍨 Taça Premium")
+    if Path("sorvete_02.png").exists():
+        st.image("sorvete_02.png", use_container_width=True)
+    if Path("banner_01.png").exists():
+        st.image("banner_01.png", use_container_width=True)
+
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
-# 06 • MOCKUPS
+# MOCKUPS
 # ==================================================
+
 banner(FUNDO_MOCKUPS)
 
-st.markdown('<div class="conteudo-texto"><h2>06 • Mockups</h2></div>', unsafe_allow_html=True)
+st.header("06 • Mockups")
 
 col1, col2, col3 = st.columns(3)
+
 with col1:
-    if Path("out_01.png").exists(): st.image("out_01.png", caption="Outdoor", use_container_width=True)
+    if Path("out_01.png").exists():
+        st.image("out_01.png", caption="Outdoor", use_container_width=True)
+
 with col2:
-    if Path("uniforme_01.png").exists(): st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)
+    if Path("uniforme_01.png").exists():
+        st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)
+
 with col3:
-    if Path("insta_01.png").exists(): st.image("insta_01.png", caption="Instagram", use_container_width=True)
+    if Path("insta_01.png").exists():
+        st.image("insta_01.png", caption="Instagram", use_container_width=True)
+
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
-# 07 • COMENTÁRIOS E AVALIAÇÕES (SISTEMA DE ENVIO)
+# COMENTÁRIOS E AVALIAÇÕES
 # ==================================================
-st.markdown('<div class="secao-interativa"><h2>07 • Feedback & Avaliações</h2>', unsafe_allow_html=True)
 
-# Layout de colunas para o formulário de envio
-col_form, col_lista = st.columns([1, 1])
+# Usa um container estilizado para feedback
+st.markdown("""
+<div class='secao-interativa'>
+    <h2>07 • Feedback & Comentários</h2>
+</div>
+""", unsafe_allow_html=True)
 
-with col_form:
-    st.subheader("Deixe seu Comentário")
-    nome_usuario = st.text_input("Seu Nome", placeholder="Ex: Professor Silva", key="input_nome")
-    comentario_texto = st.text_area("Observações ou sugestões do projeto...", height=120, key="input_texto")
-    
-    col_sub1, col_sub2 = st.columns(2)
-    with col_sub1:
-        nota = st.slider("Avaliação Geral", 1, 10, 10)
-    with col_sub2:
-        st.write("") # Espaçador
-        botao_enviar = st.button("Enviar Avaliação")
+with st.container():
+    col1, col2 = st.columns([2, 1])
 
-    if botao_enviar:
-        if nome_usuario and comentario_texto:
-            # Salva no Session State para não perder os dados na recarga do Streamlit
-            st.session_state.historico_comentarios.append({
-                "nome": nome_usuario,
-                "texto": comentario_texto,
-                "nota": nota
-            })
-            st.success("Avaliação enviada com sucesso!")
-        else:
-            st.error("Por favor, preencha o seu nome e o comentário.")
+    with col1:
+        comentario_texto = st.text_area(
+            "Deixe suas observações",
+            height=150,
+            placeholder="Digite observações, sugestões ou avaliações do projeto...",
+            key="comentario"
+        )
+        botao_enviar = st.button("Enviar Comentário")
 
-with col_lista:
-    st.subheader("Comentários Recentes")
-    if not st.session_state.historico_comentarios:
-        st.info("Nenhum comentário enviado ainda. Seja o primeiro!")
+    with col2:
+        avaliacao_nota = st.slider(
+            "Avaliação Geral",
+            min_value=1,
+            max_value=10,
+            value=10,
+            step=1,
+            key="avaliacao"
+        )
+        st.metric(
+            "Sua Nota",
+            f"{avaliacao_nota}/10"
+        )
+
+# Inicializa e exibe a lista de comentários usando st.session_state
+if 'lista_comentarios' not in st.session_state:
+    st.session_state.lista_comentarios = []
+
+if botao_enviar:
+    # Adiciona o novo comentário ao estado da sessão se o campo não estiver vazio
+    if st.session_state.comentario.strip():
+        st.session_state.lista_comentarios.append({
+            'texto': st.session_state.comentario.strip(),
+            'nota': st.session_state.avaliacao
+        })
+        # Limpa o campo de texto (isso precisa de um truque de callback no Streamlit)
+        # Por enquanto, apenas atualizamos e exibimos
+        st.rerun()
     else:
-        for c in reversed(st.session_state.historico_comentarios):
-            st.markdown(f"""
-            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-bottom: 10px;">
-                <span style="font-weight: bold; color: #D2D914;">★ {c['nota']}/10 - {c['nome']}</span>
-                <p style="margin-top: 5px; margin-bottom: 0px; color: #FDFBFE;">{c['texto']}</p>
-            </div>
-            """, unsafe_allow_html=True)
+        st.warning("O campo de comentário não pode estar vazio.")
 
-st.markdown('</div>', unsafe_allow_html=True)
+# Exibe os comentários existentes de forma elegante
+if st.session_state.lista_comentarios:
+    st.write("---")
+    st.subheader("Comentários Recentes:")
+    for comentario in reversed(st.session_state.lista_comentarios):
+        st.markdown(f"""
+        <div style="background-color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid #4B1E2F;">
+            <strong>Nota: {comentario['nota']}/10</strong><br>
+            {comentario['texto']}
+        </div>
+        """, unsafe_allow_html=True)
+
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
-# 08 • EXPORTAÇÃO
+# EXPORTAÇÃO
 # ==================================================
-st.markdown('<div class="conteudo-texto"><h2>08 • Exportação</h2></div>', unsafe_allow_html=True)
 
+st.header("08 • Exportação")
+
+# Funções de exportação
+@st.cache_data
 def gerar_pdf():
     buffer = io.BytesIO()
-    pdf = canvas.Canvas(buffer, pagesize=letter)
+    pdf = canvas.Canvas(
+        buffer,
+        pagesize=letter
+    )
+
     pdf.setTitle("Brandbook Açaí Vida")
     pdf.setFont("Helvetica-Bold", 24)
     pdf.drawString(160, 760, "AÇAÍ VIDA")
+
     pdf.setFont("Helvetica", 14)
     pdf.drawString(150, 735, "Brandbook Acadêmico")
+
     if Path("logo_01.png").exists():
-        pdf.drawImage("logo_01.png", 220, 520, width=160, height=160, preserveAspectRatio=True)
+        pdf.drawImage(
+            "logo_01.png",
+            220,
+            520,
+            width=160,
+            height=160,
+            preserveAspectRatio=True
+        )
+
     pdf.showPage()
     pdf.save()
     buffer.seek(0)
     return buffer
 
+@st.cache_data
 def gerar_zip():
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as z:
@@ -290,23 +401,31 @@ def gerar_zip():
             "mirtilo.png", "montserrat.png", "out_01.png", "poppins.png",
             "sorvete_01.png", "sorvete_02.png", "uniforme_01.png",
         ]
+
         for f in arquivos:
             if Path(f).exists():
                 z.write(f)
+
     buffer.seek(0)
     return buffer
 
-col_btn1, col_btn2 = st.columns(2)
-with col_btn1:
-    st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application/pdf", use_container_width=True)
-with col_btn2:
-    st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip", use_container_width=True)
+# Usa colunas para os botões de download
+col1, col2 = st.columns(2)
+
+with col1:
+    st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application/pdf")
+
+with col2:
+    st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip")
+
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 # ==================================================
 # RODAPÉ
 # ==================================================
+
 st.markdown("""
-<div style="text-align: center; padding: 40px; background-color: #1A1A1A; color: #666666; font-size: 14px;">
+<div style="text-align: center; color: #666; font-size: 14px; padding-bottom: 20px;">
     Açaí Vida • Brandbook Acadêmico • 2026
 </div>
 """, unsafe_allow_html=True)
