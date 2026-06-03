@@ -70,18 +70,36 @@ st.markdown(css_behance, unsafe_allow_html=True)
 # CAPA
 # ==================================================
 
-st.markdown("""
-<div class='conteudo-texto'>
-    <div class='title'>AÇAÍ VIDA</div>
-    <div class='subtitle'>Brandbook Acadêmico • Identidade Visual</div>
+banner(FUNDO_CAPA)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+col1, col2 = st.columns([1,4])
+
+with col1:
+
+    if Path("logo_01.png").exists():
+        st.image("logo_01.png", use_container_width=True)
+
+with col2:
+
+    st.markdown("""
+    <div class='title'>
+        AÇAÍ VIDA
+    </div>
+
+    <div class='subtitle' style="color:white;">
+        Brandbook Acadêmico • Identidade Visual
+    </div>
+
     <br>
-    <p>
+
+    <p style="color:white;font-size:18px;">
         <b>Cliente:</b> Açaí Vida<br>
         <b>Ano:</b> 2026<br>
         <b>Projeto de Extensão:</b> Brandbook
     </p>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 # ==================================================
 # 01 • IDENTIDADE VISUAL
