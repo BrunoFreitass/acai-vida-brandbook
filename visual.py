@@ -72,7 +72,7 @@ st.markdown(css_behance, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([1,8])
+col1, col2 = st.columns([1,6])
 
 with col1:
 
@@ -84,10 +84,7 @@ with col2:
     st.markdown("<div class='conteudo-texto'>", unsafe_allow_html=True)
 
     if Path("logo_nome_01.png").exists():
-        st.image(
-            "logo_nome_01.png",
-            use_container_width=True
-        )
+        st.image("logo_02.png", use_container_width=True)
 
     st.markdown("""
     <div class='subtitle' style="color:white; margin-top:10px;">
