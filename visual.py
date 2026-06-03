@@ -278,6 +278,8 @@ with col1:
         st.image("acai_fundo_amarelo_01.png", use_container_width=True)
     if Path("acai_fundo_amarelo_02.png").exists():
         st.image("acai_fundo_amarelo_02.png", use_container_width=True)
+    if Path("acai_fundo_amarelo_03.png").exists():
+        st.image("acai_fundo_amarelo_03.png", use_container_width=True)
 
 with col2:
     st.subheader("🍨 Taça Premium")
@@ -289,6 +291,8 @@ with col2:
         st.image("sorvete_01.png", use_container_width=True)
     if Path("sorvete_02.png").exists():
         st.image("sorvete_02.png", use_container_width=True)
+    if Path("sorvete_fundo_amarelo_03.png").exists():
+        st.image("sorvetes_fundo_amarelo_03.png", use_container_width=True)
 
 st.markdown("---")
 # ==================================================
