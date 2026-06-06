@@ -97,11 +97,11 @@ st.markdown(css_behance, unsafe_allow_html=True)
 # ==================================================
 # CAPA
 # ==================================================
-col1, col2, col3 = st.columns([1,2,1])
+col1, col2, col3 = st.columns([0.5, 3, 0.5]) # Ajustado o espaçamento para centralizar a logo maior
 
 with col2:
     if Path("logo_02.png").exists():
-        st.image("logo_02.png", width=500)
+        st.image("logo_02.png", width=700) # Logo ampliada de 500 para 700
 
 st.markdown("""
 <div style="text-align:center; color:white; font-size:20px; line-height:1.8;">
@@ -145,7 +145,7 @@ st.markdown("---")
 st.markdown("""
 <div class='conteudo-texto'>
     <h2>02 • Conceito da Marca</h2>
-    <p>A Açaí Vida representa energia, bem-estar e vitalidade. Sua identidade busca unir elementos da cultura amazônica com uma linguagem contemporânea, criando uma marca jovem, forte e memorável.</p>
+    <p>A Açaí Vida representa energia, bem-estar e vitalidade. Sua identidade busca unir elements da cultura amazônica com uma linguagem contemporânea, criando uma marca jovem, forte e memorável.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -187,8 +187,10 @@ with col3:
     st.caption("Tipografia de apoio")
     
 # ==================================================
-# 04 • PALETA DE CORES
+# 04 • PALETA DE CORES & REFERÊNCIA DE MARCA
 # ==================================================
+st.markdown("---")
+
 st.markdown("""
 <div class='conteudo-texto'>
     <h2>04 • Paleta de Cores</h2>
@@ -203,6 +205,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Bloco de Cores em 5 colunas
 cores = [
     ("Roxo Açaí", "#5B2A8C"),
     ("Verde Energia", "#D2D914"),
@@ -224,6 +227,24 @@ for i, (nome, cor) in enumerate(cores):
             """,
             unsafe_allow_html=True
         )
+
+# INCLUSÃO SOLICITADA: Logo Principal integrada às seções de Tipografia e Cores para melhor referência conceitual
+st.markdown("<br>", unsafe_allow_html=True)
+col_ref1, col_ref2 = st.columns([1.2, 2])
+
+with col_ref1:
+    st.markdown("""
+    <div style="padding-top: 20px;">
+        <h4>Aplicação Cromática e Tipográfica Integrada</h4>
+        <p style="color: #666; font-size: 14px;">
+            Ao lado, observa-se como o <strong>Roxo Açaí</strong> e o <strong>Verde Energia</strong> interagem diretamente com os contornos fluidos desenhados a partir da tipografia institucional. Esta combinação garante consistência e contraste tanto em fundos claros quanto escuros.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_ref2:
+    if Path("logo_01.png").exists():
+        st.image("logo_01.png", caption="Referência Visual: Logo Principal aplicada sobre fundo neutro", width=450)
 
 st.markdown("---")
 
@@ -396,4 +417,4 @@ st.markdown("""
 <div style="text-align: center; color: #666; font-size: 14px; padding: 40px 0px 20px 0px;">
     Açaí Vida • Brandbook Acadêmico • 2026
 </div>
-""")
+""", unsafe_allow_html=True)
