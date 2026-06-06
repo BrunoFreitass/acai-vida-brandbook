@@ -78,13 +78,15 @@ st.markdown('<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/armonio
 css_behance = (
     "<style>"
     ".main .block-container {max-width: 100% !important; padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; padding-right: 0rem !important;}"
-    "[data-testid='stImage'] img {width: 100% !important; max-width: 100% !important; height: auto !important; margin-bottom: 0px !important; border-radius: 0px !important;}"
+    # Removemos a regra global que forçava height: auto em todas as imagens para evitar conflitos com os mockups
     "[data-testid='stHorizontalBlock'] {gap: 0rem !important;}"
     ".conteudo-texto {padding: 60px 80px; background-color: transparent;}"
     ".title {font-family: 'Armonioso', cursive; font-size: 72px; color: white;text-shadow: 0px 2px 12px rgba(0,0,0,0.35);}"
     ".subtitle {font-size: 22px; color: #666;}"
     ".secao-interativa {background-color: #f7f7f7; padding: 60px 80px; border-radius: 16px; margin-bottom: 20px; color: #333333;}"
-    ".mockup-img img {height: 450px !important; width: 100% !important; object-fit: cover !important; border-radius: 12px !important;}"
+    
+    # Nova classe específica para os containers de mockup garantirem alinhamento perfeito de tamanho
+    ".mockup-container [data-testid='stImage'] img {height: 400px !important; width: 100% !important; object-fit: cover !important; border-radius: 12px !important; margin-bottom: 10px !important;}"
     "</style>"
 )
 
@@ -143,7 +145,7 @@ st.markdown("---")
 st.markdown("""
 <div class='conteudo-texto'>
     <h2>02 • Conceito da Marca</h2>
-    <p>A Açaí Vida representa energia, bem-estar e vitalidade. Sua identidade busca unir elementos da cultura amazônica com uma linguagem contemporânea, criando uma marca jovem, forte e memorável.</p>
+    <p>A Açaí Vida representa energia, bem-estar e vitalidade. Sua identidade busca unir elements da cultura amazônica com uma linguagem contemporânea, criando uma marca jovem, forte e memorável.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -276,20 +278,24 @@ st.markdown("---")
 # ==================================================
 st.markdown("<div class='conteudo-texto'><h2>06 • Mockups</h2></div>", unsafe_allow_html=True)
 
+# Envolvemos toda a seção em uma div com a classe 'mockup-container' para padronizar o tamanho via CSS
+st.markdown('<div class="mockup-container">', unsafe_allow_html=True)
+
+# Primeira Linha (Outdoor e Uniforme)
 col1, col2 = st.columns(2)
 
 with col1:
     if Path("out_01.png").exists():
-        st.markdown('<div class="mockup-img">', unsafe_allow_html=True)
         st.image("out_01.png", caption="Outdoor", use_container_width=True)
-        st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
     if Path("uniforme_01.png").exists():
-        st.markdown('<div class="mockup-img">', unsafe_allow_html=True)
-        st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)  # Corrigido o arquivo aqui
-        st.markdown('</div>', unsafe_allow_html=True)
+        st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)
 
+# Adiciona um pequeno espaçamento vertical entre as linhas de mockups
+st.markdown("<br>", unsafe_allow_html=True)
+
+# Segunda Linha (Instagram e Cardápio)
 col3, col4 = st.columns(2)
 
 with col3:
@@ -299,6 +305,8 @@ with col3:
 with col4:
     if Path("cardapio_01.png").exists():
         st.image("cardapio_01.png", caption="Cardápio", use_container_width=True)
+
+st.markdown('</div>', unsafe_allow_html=True) # Fecha a div mockup-container
 
 st.markdown("---")
 
