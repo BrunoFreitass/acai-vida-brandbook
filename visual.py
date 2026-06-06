@@ -6,6 +6,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 import qrcode
 
+st.page_link("pages/cardapio.py", label="🍕 Ir para o Cardápio (Fazer Pedido)", icon="🥤")
+
 # ==================================================
 # CONFIGURAÇÃO DA PÁGINA
 # ==================================================
