@@ -395,3 +395,5 @@ with col_dl2:
 st.markdown("""
 <div style="text-align: center; color: #666; font-size: 14px; padding: 40px 0px 20px 0px;">
     Açaí Vida • Brandbook Acadêmico • 2026
+</div>
+""")
