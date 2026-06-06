@@ -1,2 +1,5 @@
 streamlit
 reportlab
+reportlab
+qrcode
+pillow
