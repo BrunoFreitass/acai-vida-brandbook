@@ -5,6 +5,7 @@ import zipfile
 import base64
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
+import qrcode
 
 # ==================================================
 # CONFIGURAÇÃO DA PÁGINA
@@ -22,6 +23,12 @@ st.set_page_config(
 st.markdown('<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/armonioso">', unsafe_allow_html=True)
 
 css_behance = (
+    .mockup-img img {
+    height: 450px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+}
     "<style>"
     ".main .block-container {max-width: 100% !important; padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; padding-right: 0rem !important;}"
     "[data-testid='stImage'] img {width: 100% !important; max-width: 100% !important; height: auto !important; margin-bottom: 0px !important; border-radius: 0px !important;}"
@@ -39,12 +46,12 @@ st.markdown(css_behance, unsafe_allow_html=True)
 # CAPA
 # ==================================================
 
-st.markdown("<br>", unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1,2,1])
 
-if Path("logo_02.png").exists():
+with col2:
     st.image(
         "logo_02.png",
-        use_container_width=True
+        width=500
     )
 
 st.markdown("""
@@ -127,6 +134,22 @@ st.markdown("---")
 st.markdown("""
 <div class='conteudo-texto'>
 <h2>03 • Tipografia</h2>
+
+<p>
+A seleção tipográfica busca equilibrar personalidade,
+modernidade e excelente legibilidade em ambientes digitais e impressos.
+</p>
+
+<ul>
+
+<li><strong>Gelato Luxe:</strong> utilizada como tipografia principal por transmitir exclusividade, movimento e personalidade.</li>
+
+<li><strong>Poppins Bold:</strong> empregada em títulos e chamadas por sua alta legibilidade.</li>
+
+<li><strong>Montserrat Regular:</strong> aplicada em textos corridos devido à sua clareza e conforto de leitura.</li>
+
+</ul>
+
 </div>
 """, unsafe_allow_html=True)
 
@@ -160,11 +183,30 @@ with col3:
 # 04 • PALETA DE CORES
 # ==================================================
 
-st.markdown("---")
-
 st.markdown("""
 <div class='conteudo-texto'>
+
 <h2>04 • Paleta de Cores</h2>
+
+<p>
+A paleta cromática da Açaí Vida foi construída para transmitir
+energia, vitalidade, natureza e conexão com a Amazônia.
+Cada cor possui uma função estratégica dentro da identidade visual.
+</p>
+
+<ul>
+<li><strong>Roxo Açaí:</strong> representa o fruto principal da marca, autenticidade e personalidade.</li>
+
+<li><strong>Verde Energia:</strong> transmite saúde, frescor e ingredientes naturais.</li>
+
+<li><strong>Amarelo Tropical:</strong> remete ao clima brasileiro, alegria e energia.</li>
+
+<li><strong>Branco:</strong> proporciona equilíbrio visual e legibilidade.</li>
+
+<li><strong>Roxo Profundo:</strong> reforça sofisticação e contraste.</li>
+
+</ul>
+
 </div>
 """, unsafe_allow_html=True)
 
@@ -265,11 +307,15 @@ col1, col2 = st.columns(2)
 
 with col1:
     if Path("out_01.png").exists():
+        st.markdown('<div class="mockup-img">', unsafe_allow_html=True)
         st.image("out_01.png", caption="Outdoor", use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
     if Path("uniforme_01.png").exists():
-        st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)
+        st.markdown('<div class="mockup-img">', unsafe_allow_html=True)
+        st.image("out_01.png", caption="Outdoor", use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # Segunda linha
 
@@ -282,6 +328,23 @@ with col3:
 with col4:
     if Path("cardapio_01.png").exists():
         st.image("cardapio_01.png", caption="Cardápio", use_container_width=True)
+
+st.markdown("---")
+
+st.subheader("📱 Instagram")
+
+arquivo_qr = gerar_qr_instagram()
+
+col1, col2 = st.columns([1,2])
+
+with col1:
+    st.image(arquivo_qr)
+
+with col2:
+    st.markdown("""
+Escaneie o QR Code para acessar
+o perfil oficial da Açaí Vida.
+""")
         
 # ==================================================
 # 07 • COMENTÁRIOS E AVALIAÇÕES
@@ -394,6 +457,16 @@ with col_dl1:
     st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application/pdf", use_container_width=True)
 with col_dl2:
     st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip", use_container_width=True)
+
+def gerar_qr_instagram():
+
+    qr = qrcode.make(
+        "https://www.instagram.com/acai_vida"
+    )
+
+    qr.save("qr_instagram.png")
+
+    return "qr_instagram.png"
 
 # ==================================================
 # RODAPÉ
