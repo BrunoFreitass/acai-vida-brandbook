@@ -36,8 +36,10 @@ with col_c1:
     st.markdown("""
     <div class='produto-card'>
         <h3>🥤 Copo Comercial Tradicional</h3>
-        <p>Açaí cremoso batido na hora com direito a 3 acompanhamentos tradicionais à sua escolha.</p>
-        <span class='preco'>R$ 15,00 (300ml) / R$ 22,00 (500ml)</span>
+        <p>Açaí cremoso batido na hora com direito até 3 Frutas, 3 Acompanhamento e 3 Caldas, à depender do tamanho do copo.</p>
+        <span class='preco'>R$ 13,00 (250ml) / R$ 15,00 (300ml)</span>
+        <span class='preco'>R$ 18,00 (400ml) / R$ 22,00 (500ml)</span>
+        <span class='preco'>R$ 28,00 (700ml)</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -45,8 +47,8 @@ with col_c2:
     st.markdown("""
     <div class='produto-card'>
         <h3>🍨 Taça Premium Sensação</h3>
-        <p>Camadas estruturadas de creme de mirtilo artesanal, sorvete artesanal de creme e calda de açaí concentrada.</p>
-        <span class='preco'>R$ 28,00</span>
+        <p>Sorvete artesanal de creme e calda de Açaí, Chocolate concentrada, Morango. Consulte Disponibilidade e valores</p>
+        <span class='preco'>R$ 00,00</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -61,10 +63,12 @@ with st.form("formulario_pedido", clear_on_submit=True):
     item_escolhido = st.selectbox(
         "Selecione o produto desejado:",
         [
-            "Copo Comercial Tradicional (300ml) - R$ 15,00",
-            "Copo Comercial Grande (500ml) - R$ 22,00",
-            "Taça Premium Sensação (Mirtilo e Sorvete) - R$ 28,00",
-            "Taça Tropical Completa (Açaí e Sorvete Verde/Amarelo) - R$ 32,00"
+            "Copo Açaí (250ml) - 1 Fruta - 1 Acompanhamento - 1 Calda - R$ 13,00",
+            "Copo Açaí (300ml) - 1 Fruta - 2 Acompanhementos - 1 Calda - R$ 15,00",
+            "Copo Açaí (400ml) - 1 Fruta - 2 Acompanhementos - 2 Caldas - R$ 18,00",
+            "Copo Açaí (500ml) - 1 Fruta - 2 Acompanhementos - 2 Caldas - R$ 22,00",
+            "Copo Açaí (700ml) - 3 Frutas - 3 Acompanhementos - 3 Caldas - R$ 22,00",
+            "Taça Premium Sensação (Sorvete) - R$ 00,00",
         ]
     )
     
