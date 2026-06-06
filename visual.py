@@ -16,8 +16,12 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# 📥 INICIALIZAÇÃO DA LISTA DE PEDIDOS COMPARTILHADA
+if 'pedidos_realizados' not in st.session_state:
+    st.session_state.pedidos_realizados = []
+
 # ==================================================
-# 🛠️ FUNÇÕES DE SUPORTE (DEFINIDAS ANTES DO USO)
+# 🛠️ FUNÇÕES DE SUPORTE
 # ==================================================
 def gerar_qr_instagram():
     qr = qrcode.make("https://www.instagram.com/acai_vida")
@@ -83,8 +87,6 @@ css_behance = (
     ".title {font-family: 'Armonioso', cursive; font-size: 72px; color: white;text-shadow: 0px 2px 12px rgba(0,0,0,0.35);}"
     ".subtitle {font-size: 22px; color: #666;}"
     ".secao-interativa {background-color: #f7f7f7; padding: 60px 80px; border-radius: 16px; margin-bottom: 20px; color: #333333;}"
-    
-    # Classes específicas de tamanho fixo e corte proporcional para as seções
     ".aplicacao-container [data-testid='stImage'] img {height: 400px !important; width: 100% !important; object-fit: cover !important; border-radius: 12px !important; margin-bottom: 15px !important;}"
     ".mockup-container [data-testid='stImage'] img {height: 400px !important; width: 100% !important; object-fit: cover !important; border-radius: 12px !important; margin-bottom: 10px !important;}"
     "</style>"
@@ -98,10 +100,8 @@ st.markdown(css_behance, unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1,2,1])
 
 with col2:
-    st.image(
-        "logo_02.png",
-        width=500
-    )
+    if Path("logo_02.png").exists():
+        st.image("logo_02.png", width=500)
 
 st.markdown("""
 <div style="text-align:center; color:white; font-size:20px; line-height:1.8;">
@@ -192,7 +192,7 @@ with col3:
 st.markdown("""
 <div class='conteudo-texto'>
     <h2>04 • Paleta de Cores</h2>
-    <p>A paleta cromática da Açaí Vida foi construída para transmitir energia, vitalidade, natureza e conexão com a Amazônia. Cada cor possui uma função estratégica dentro da identidade visual.</p>
+    <p>A paleta cromática da Açaí Vida foi construída para transmitir energia, vitalidade, natureza e conexão com a Amazônia. Cada cor possui uma função estratégica dentro della identidade visual.</p>
     <ul>
         <li><strong>Roxo Açaí:</strong> representa o fruto principal da marca, autenticidade e personalidade.</li>
         <li><strong>Verde Energia:</strong> transmite saúde, frescor e ingredientes naturais.</li>
@@ -202,18 +202,6 @@ st.markdown("""
     </ul>
 </div>
 """, unsafe_allow_html=True)
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.subheader("Logo Principal")
-    if Path("logo_01.png").exists():
-        st.image("logo_01.png", use_container_width=True)
-
-with col2:
-    st.subheader("Logos Alternativas")
-    if Path("Logos_01.png").exists():
-        st.image("Logos_01.png", use_container_width=True)
 
 cores = [
     ("Roxo Açaí", "#5B2A8C"),
@@ -244,7 +232,6 @@ st.markdown("---")
 # ==================================================
 st.markdown("<div class='conteudo-texto'><h2>05 • Aplicação da Marca</h2></div>", unsafe_allow_html=True)
 
-# Nova div com classe 'aplicacao-container' para garantir tamanho igual em todas as imagens desta seção
 st.markdown('<div class="aplicacao-container">', unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
@@ -274,7 +261,7 @@ with col2:
     if Path("sovertes_fundo_amarelo_01.png").exists():
         st.image("sovertes_fundo_amarelo_01.png", use_container_width=True)
 
-st.markdown('</div>', unsafe_allow_html=True) # Fecha a div aplicacao-container
+st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -323,6 +310,24 @@ with col1_qr:
 with col2_qr:
     st.markdown("Escaneie o QR Code para acessar o perfil oficial da Açaí Vida.")
         
+# ==================================================
+# 📥 PAINEL DE PEDIDOS EM TEMPO REAL
+# ==================================================
+st.markdown("<div class='secao-interativa'><h2>📥 Pedidos Recebidos (Painel Geral)</h2></div>", unsafe_allow_html=True)
+
+if not st.session_state.pedidos_realizados:
+    st.info("Nenhum pedido recebido até o momento. Aguardando clientes realizarem pedidos na página do Cardápio...")
+else:
+    for idx, pedido in enumerate(reversed(st.session_state.pedidos_realizados)):
+        st.markdown(f"""
+        <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid #D2D914; color: #333333; box-shadow: 0px 2px 4px rgba(0,0,0,0.05);">
+            <h4 style="margin:0; color:#5B2A8C;">🛒 Pedido #{len(st.session_state.pedidos_realizados) - idx} - Cliente: {pedido['cliente']}</h4>
+            <p style="margin: 5px 0;"><strong>Itens:</strong> {pedido['item']}</p>
+            <p style="margin: 5px 0;"><strong>Observações:</strong> {pedido['obs']}</p>
+            <span style="font-size:12px; color:#666;">Status: 🟡 Recebido pela Cozinha</span>
+        </div>
+        """, unsafe_allow_html=True)
+
 # ==================================================
 # 07 • COMENTÁRIOS E AVALIAÇÕES
 # ==================================================
@@ -390,5 +395,3 @@ with col_dl2:
 st.markdown("""
 <div style="text-align: center; color: #666; font-size: 14px; padding: 40px 0px 20px 0px;">
     Açaí Vida • Brandbook Acadêmico • 2026
-</div>
-""", unsafe_allow_html=True)
