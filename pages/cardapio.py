@@ -34,7 +34,7 @@ st.markdown("""
 col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
 with col_logo2:
     if Path("logo_01.png").exists():
-        st.image("logo_02.png", width=250)
+        st.image("logo_02.png", width=450)
 
 # Layout visual das opções do cardápio para o cliente ver antes de pedir
 st.subheader("📋 Nossas Opções Disponíveis")
