@@ -248,4 +248,139 @@ with col1:
     if Path("acai_01.png").exists():
         st.image("acai_01.png", use_container_width=True)
     if Path("acai_02.png").exists():
-        st.image("acai_02
+        st.image("acai_02.png", use_container_width=True)
+    if Path("acai_fundo_amarelo_01.png").exists():
+        st.image("acai_fundo_amarelo_01.png", use_container_width=True)
+    if Path("acai_fundo_amarelo_02.png").exists():
+        st.image("acai_fundo_amarelo_02.png", use_container_width=True)
+    if Path("acai_fundo_amarelo_03.png").exists():
+        st.image("acai_fundo_amarelo_03.png", use_container_width=True)
+
+with col2:
+    st.subheader("🍨 Taça Premium")
+    if Path("sorvete_02.png").exists():
+        st.image("sorvete_02.png", use_container_width=True)
+    if Path("banner_01.png").exists():
+        st.image("banner_01.png", use_container_width=True)
+    if Path("sorvete_01.png").exists():
+        st.image("sorvete_01.png", use_container_width=True)
+    if Path("sorvete_02.png").exists():
+        st.image("sorvete_02.png", use_container_width=True)
+    if Path("sovertes_fundo_amarelo_01.png").exists():
+        st.image("sovertes_fundo_amarelo_01.png", use_container_width=True)
+
+st.markdown("---")
+
+# ==================================================
+# 06 • MOCKUPS
+# ==================================================
+st.markdown("<div class='conteudo-texto'><h2>06 • Mockups</h2></div>", unsafe_allow_html=True)
+
+col1, col2 = st.columns(2)
+
+with col1:
+    if Path("out_01.png").exists():
+        st.markdown('<div class="mockup-img">', unsafe_allow_html=True)
+        st.image("out_01.png", caption="Outdoor", use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+with col2:
+    if Path("uniforme_01.png").exists():
+        st.markdown('<div class="mockup-img">', unsafe_allow_html=True)
+        st.image("uniforme_01.png", caption="Uniforme", use_container_width=True)  # Corrigido o arquivo aqui
+        st.markdown('</div>', unsafe_allow_html=True)
+
+col3, col4 = st.columns(2)
+
+with col3:
+    if Path("insta_01.png").exists():
+        st.image("insta_01.png", caption="Instagram", use_container_width=True)
+
+with col4:
+    if Path("cardapio_01.png").exists():
+        st.image("cardapio_01.png", caption="Cardápio", use_container_width=True)
+
+st.markdown("---")
+
+st.subheader("📱 Instagram")
+
+# Chamando a função que agora já está definida no escopo
+arquivo_qr = gerar_qr_instagram()
+
+col1_qr, col2_qr = st.columns([1,2])
+
+with col1_qr:
+    st.image(arquivo_qr)
+
+with col2_qr:
+    st.markdown("Escaneie o QR Code para acessar o perfil oficial da Açaí Vida.")
+        
+# ==================================================
+# 07 • COMENTÁRIOS E AVALIAÇÕES
+# ==================================================
+st.markdown("<div class='secao-interativa'><h2>07 • Feedback & Comentários</h2></div>", unsafe_allow_html=True)
+
+if 'lista_comentarios' not in st.session_state:
+    st.session_state.lista_comentarios = []
+
+col_input, col_nota = st.columns([2, 1])
+
+with col_input:
+    comentario_texto = st.text_area(
+        "Deixe suas observações",
+        height=120,
+        placeholder="Digite observações, sugestões ou avaliações do projeto...",
+        key="campo_comentario"
+    )
+    botao_enviar = st.button("Enviar Comentário")
+
+with col_nota:
+    avaliacao_nota = st.slider(
+        "Avaliação Geral",
+        min_value=1,
+        max_value=10,
+        value=10,
+        step=1,
+        key="campo_avaliacao"
+    )
+    st.metric("Sua Nota", f"{avaliacao_nota}/10")
+
+if botao_enviar:
+    if st.session_state.campo_comentario.strip():
+        st.session_state.lista_comentarios.append({
+            'texto': st.session_state.campo_comentario.strip(),
+            'nota': st.session_state.campo_avaliacao
+        })
+        st.rerun()
+    else:
+        st.warning("O campo de comentário não pode estar vazio.")
+
+if st.session_state.lista_comentarios:
+    st.markdown("<div style='padding: 0 20px;'><h3>Comentários Recentes:</h3></div>", unsafe_allow_html=True)
+    for comentario in reversed(st.session_state.lista_comentarios):
+        st.markdown(f"""
+        <div style="background-color: #ffffff; padding: 15px; border-radius: 8px; margin: 10px 20px 15px 20px; border-left: 5px solid #4B1E2F; color: #333333; box-shadow: 0px 2px 4px rgba(0,0,0,0.05);">
+            <strong>Nota: {comentario['nota']}/10</strong><br>
+            {comentario['texto']}
+        </div>
+        """, unsafe_allow_html=True)
+
+# ==================================================
+# 08 • EXPORTAÇÃO
+# ==================================================
+st.markdown("<div class='conteudo-texto'><h2>08 • Exportação</h2></div>", unsafe_allow_html=True)
+
+col_dl1, col_dl2 = st.columns(2)
+with col_dl1:
+    st.download_button("📄 Baixar PDF", gerar_pdf(), "brandbook.pdf", "application/pdf", use_container_width=True)
+with col_dl2:
+    st.download_button("📦 Baixar KIT (.zip)", gerar_zip(), "kit_acai.zip", "application/zip", use_container_width=True)
+
+# ==================================================
+# RODAPÉ
+# ==================================================
+st.markdown("""
+<div style="text-align: center; color: #666; font-size: 14px; padding: 40px 0px 20px 0px;">
+    Açaí Vida • Brandbook Acadêmico • 2026
+</div>
+""", unsafe_allow_html=True)
